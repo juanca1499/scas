@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block headertitle %}
+    Lista de solicitudes
+{% endblock %}
+
+{% block contenido %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{% url 'solicitudes:nueva' %}" class="btn btn-primary btn-lg">Agregar solicitud</a>
+{% endblock %}
