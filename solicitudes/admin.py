@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from .models import EstadoCivil, GradoEstudios, Ocupacion
+from .models import EstatusSolicitud
 
 # Register your models here.
-admin.site.register(EstadoCivil)
-admin.site.register(GradoEstudios)
-admin.site.register(Ocupacion)
+admin.site.register(EstatusSolicitud)

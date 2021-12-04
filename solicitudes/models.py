@@ -36,7 +36,7 @@ class Solicitud(models.Model):
     fecha_nacimiento = models.DateField()
     correo = models.EmailField('Correo', max_length=50, blank=True, null=True)
     resumen = models.TextField('Resumen de la solicitud', blank=True, null=True)
-    estatus = models.ForeignKey('solicitudes.EstatusSolicitud', related_name='Estatus de la solicitud', on_delete=models.CASCADE)
+    estatus = models.ForeignKey('solicitudes.EstatusSolicitud', verbose_name='Estatus de la solicitud', on_delete=models.CASCADE)
     #usuario = models.ForeignKey("usuarios.Usuario",verbose_name='Usuario',on_delete=models.CASCADE)
     
     def __str__(self):
@@ -48,7 +48,7 @@ class Solicitud(models.Model):
         
         
 class EstatusSolicitud(models.Model):
-    estatus = models.CharField("Estatus de la solicitud", max_length=20)
+    estatus = models.CharField(max_length=20)
 
     def __str__(self):
         return self.estado
