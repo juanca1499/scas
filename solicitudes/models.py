@@ -4,28 +4,6 @@ from django.core.validators import RegexValidator, MinLengthValidator, MinValueV
 from usuarios.models import Usuario
 
 
-class EstadoCivil(models.Model):
-    estado_civil = models.CharField(
-        'Estado Civil', max_length=20, validators=[MinLengthValidator(1)])
-
-    def __str__(self):
-        return self.estado_civil
-
-
-class GradoEstudios(models.Model):
-    grado = models.CharField('Último grado de estudios', max_length=20)
-
-    def __str__(self):
-        return self.grado
-
-
-class Ocupacion(models.Model):
-    ocupacion = models.CharField('Ocupación', max_length=25)
-
-    def __str__(self):
-        return self.ocupacion
-
-
 solo_letras = RegexValidator(
     r'^[a-zA-Z\s\u00C0-\u00FF]*$', 'Sólo se permiten letras.')
 solo_numeros = RegexValidator(r'^[0-9]*$', 'Sólo se permiten números.')
@@ -51,16 +29,22 @@ class Solicitud(models.Model):
     telefono = models.CharField('Teléfono', max_length=10, validators=[
                                 MinLengthValidator(10), solo_numeros])
     curp = models.CharField('CURP', max_length=18, validators=[curp])
-    lugar_nacimiento = models.CharField(
-        'Lugar de nacimiento', max_length=40, validators=[no_numeros])
     fecha_nacimiento = models.DateField()
-    estado_civil = models.ForeignKey(
-        EstadoCivil, verbose_name='Estado Civil', on_delete=models.CASCADE)
-    ultimo_grado_estudios = models.ForeignKey(
-        GradoEstudios, verbose_name='Último grado de estudios', on_delete=models.CASCADE)
-    ocupacion = models.ForeignKey(
-        Ocupacion, verbose_name='Ocupación', on_delete=models.CASCADE)
-    otra_ocupacion = models.CharField(
-        'Otra ocupación', max_length=40, blank=True, null=True)
     correo = models.EmailField('Correo', max_length=50)
-    resumen = models.TextField('Resumen de la solicitud')
+    resumen = models.TextField('Resumen de la solicitud',blank=True, null=True)
+    estado = models.ForeignKey('solicitudes.EstadoSolicitud', related_name='Estado de la solicitud', on_delete=models.CASCADE)
+    #usuario = models.ForeignKey("usuarios.Usuario",verbose_name='Usuario',on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.nombre
+    
+    class Meta:
+        verbose_name = 'Solicitud'
+        verbose_name_plural = 'Solicitudes'
+        
+        
+class EstadoSolicitud(models.Model):
+    estado = models.CharField("Estado de la solicitud", max_length=20)
+
+    def __str__(self):
+        return self.estado

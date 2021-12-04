@@ -18,6 +18,10 @@ class SolicitudForm(forms.ModelForm):
                                            format='%Y-%m-%d',
                                            attrs={'class': 'form-control'}),
                                        required=False)
+    
+    #def __init__(self, *args, **kwargs):
+    #    super(SolicitudForm, self).__init__(*args, **kwargs)
+    #    self.fields['usuario'].required = False
 
     class Meta:
         model = Solicitud
@@ -33,11 +37,8 @@ class SolicitudForm(forms.ModelForm):
             'seccion': forms.NumberInput(attrs={'class': 'form-control'}),
             'telefono': forms.NumberInput(attrs={'class': 'form-control'}),
             'curp': forms.TextInput(attrs={'class': 'form-control'}),
-            'lugar_nacimiento': forms.TextInput(attrs={'class': 'form-control'}),
-            'estado_civil': forms.Select(attrs={'class': 'form-control'}),
-            'ultimo_grado_estudios': forms.Select(attrs={'class': 'form-control'}),
-            'ocupacion': forms.Select(attrs={'class': 'form-control'}),
-            'otra_ocupacion': forms.TextInput(attrs={'class': 'form-control'}),
             'correo': forms.TextInput(attrs={'class': 'form-control'}),
             'resumen': forms.Textarea(attrs={'class': 'form-control'}),
+            'estado':forms.Select(attrs={'class':'form-select'}),
+            #'usuario':forms.HiddenInput(attrs={'class':'form-control'})
         }
