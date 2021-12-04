@@ -19,19 +19,23 @@ class Solicitud(models.Model):
         'Primer Apellido', max_length=35, validators=[solo_letras])
     segundo_apellido = models.CharField(
         'Segundo apellido', max_length=35, blank=True, null=True, validators=[solo_letras])
-    calle = models.CharField('Calle', max_length=34, validators=[solo_letras])
+    calle = models.CharField('Calle', max_length=34)
     numero = models.PositiveIntegerField(
         'Número', validators=[MinValueValidator(1)])
     codigo_postal = models.CharField(
-        'Código Postal', max_length=5, validators=[MinLengthValidator(5)])
+        'Código Postal', max_length=5, validators=[MinLengthValidator(5), 
+                                                   solo_numeros])
     seccion = models.CharField('Sección', max_length=4, validators=[
                                MinLengthValidator(4), solo_numeros])
     telefono = models.CharField('Teléfono', max_length=10, validators=[
                                 MinLengthValidator(10), solo_numeros])
     curp = models.CharField('CURP', max_length=18, validators=[curp])
+    #localidad = models.ForeignKey("usuarios.Localidad",verbose_name='Localidad',on_delete=models.CASCADE)
+    #municipio = models.ForeignKey("usuarios.Municipio",verbose_name='Municipio',on_delete=models.CASCADE)
+    #estado = models.ForeignKey("usuarios.Estado",verbose_name='Estado',on_delete=models.CASCADE)
     fecha_nacimiento = models.DateField()
-    correo = models.EmailField('Correo', max_length=50)
-    resumen = models.TextField('Resumen de la solicitud',blank=True, null=True)
+    correo = models.EmailField('Correo', max_length=50, blank=True, null=True)
+    resumen = models.TextField('Resumen de la solicitud', blank=True, null=True)
     estatus = models.ForeignKey('solicitudes.EstatusSolicitud', related_name='Estatus de la solicitud', on_delete=models.CASCADE)
     #usuario = models.ForeignKey("usuarios.Usuario",verbose_name='Usuario',on_delete=models.CASCADE)
     

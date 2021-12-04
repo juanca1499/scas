@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block headertitle %}
+    Detalles de la solicitud
+{% endblock %}
+
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+                <p><b>Nombre: </b>{{solicitud.nombre}}</p>
+                <p><b>Primer Apellido: </b> {{solicitud.primer_apellido}}</p>
+                {% if solicitud.segundo_apellido != None %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                    <p><b>Segundo apellido: </b> {{solicitud.segundo_apellido}}</p>
+                {% endif %}
+                <p><b>CURP: </b>{{solicitud.curp}}</p>
+                <p><b>Fecha de nacimiento: </b>{{solicitud.fecha_nacimiento}}</p>
+                <p><b>Teléfono: </b>{{solicitud.telefono}}</p>
+                {% if solicitud.correo != None %} <!-- Solo muestra el correo en caso de que haya sido capturado-->
+                    <p><b>Correo Electrónico: </b>{{solicitud.correo}}</p> 
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos del domicilio</b></p>
+            <hr>
+            <div class="col-6">
+                <p><b>Calle: </b>{{solicitud.calle}}</p>
+                <p><b>Número: </b> {{solicitud.numero}}</p>
+                <p><b>Código postal: </b>{{solicitud.codigo_postal}}</p>
+                <p><b>Sección: </b>{{solicitud.seccion}}</p>
+            </div>
+        </section>
+    </div>
+    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos de la solicitud</b></p>
+            <hr>
+            <div class="col-6">
+                <p><b>Fecha de la solicitud: </b>{{solicitud.fecha}}</p>
+                <p><b>Estatus: </b> {{solicitud.estatus}}</p>
+                {% if solicitud.resumen != None %} <!-- Solo muestra el resumen de la solicitud en caso de que haya sido capturado-->
+                    <p><b>Resumen de la solicitud: </b>{{solicitud.resumen}}</p>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

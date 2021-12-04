@@ -45,4 +45,4 @@ class EditarSolicitud(LoginRequiredMixin, UpdateView):
     
 class DetalleSolicitud(LoginRequiredMixin, DetailView):
     model = Solicitud
-    context_object_name = "solicitudes"
+    context_object_name = "solicitud"
