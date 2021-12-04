@@ -22,6 +22,5 @@ Característica: Como administrador me gustaría iniciar
     Escenario: Usuario dado de baja
     Dado que accedo al sistema
     Y me dirijo a la pantalla de login
-    Y capturo el usuario dado de baja "usuarioretirado"
-    Y la contraseña "123baja"
+    Y capturo el usuario dado de baja "usuarioretirado" y la contraseña "123baja"
     Entonces el sistema me muestra el mensaje "El usuario ha sido dado de bajada del sistema. Por favor contacte al administrador."
