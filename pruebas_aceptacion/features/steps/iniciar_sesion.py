@@ -23,15 +23,17 @@ def step_impl(context, usuario, contra):
 
 @when(u'presiono el botón de inicio de sesión')
 def step_impl(context):
-    context.driver.find_element_by_id('ingresar').click()
+    context.driver.find_element_by_tag_name('button').click()
     time.sleep(1)
 
 
 @then(u'el sistema me dirige a la página donde se muestran las solicitudes de apoyos que se han realizado.')
 def step_impl(context):
-    assert context.driver.current_url == '/solicitudes'
+    assert context.driver.current_url == context.url + 'solicitudes/'
     
 
 @then(u'el sistema me muestra el mensaje {mensaje}')
 def step_impl(context, mensaje):
-    context.test.assertIn(mensaje, context.driver.page_source)
+    advertencia = context.driver.find_element_by_id('swal2-title')
+    mensaje_error = advertencia.get_attribute('innerHTML')
+    assert mensaje == mensaje_error

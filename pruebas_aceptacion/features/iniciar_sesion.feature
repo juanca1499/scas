@@ -15,9 +15,9 @@ Característica: Como administrador me gustaría iniciar
     Dado que accedo al sistema
     Y capturo el usuario "juca" y la contraseña "123"
     Cuando presiono el botón de inicio de sesión
-    Entonces el sistema me muestra el mensaje "El usuario o la contraseña no son correctos."
+    Entonces el sistema me muestra el mensaje "El usuario o la contraseña no son correctos"
 
     Escenario: Usuario dado de baja
     Dado que accedo al sistema
     Y capturo el usuario dado de baja "usuarioretirado" y la contraseña "123baja"
-    Entonces el sistema me muestra el mensaje "El usuario ha sido dado de bajada del sistema. Por favor contacte al administrador."
+    Entonces el sistema me muestra el mensaje "El usuario ha sido dado de bajada del sistema. Por favor contacte al administrador"
