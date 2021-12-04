@@ -25,7 +25,7 @@ class NuevaSolicitud(LoginRequiredMixin, CreateView):
         return super(NuevaSolicitud, self).form_invalid(form)
     
     def form_valid(self, form):
-        messages.error(self.request, 'Solicitud guardada exitosamente.')
+        messages.success(self.request, 'Solicitud guardada exitosamente.')
         return super(NuevaSolicitud, self).form_valid(form)
     
     

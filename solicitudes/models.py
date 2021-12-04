@@ -7,7 +7,7 @@ class EstatusSolicitud(models.Model):
     estatus = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.estado
+        return self.estatus
 
 solo_letras = RegexValidator(
     r'^[a-zA-Z\s\u00C0-\u00FF]*$', 'Sólo se permiten letras.')
