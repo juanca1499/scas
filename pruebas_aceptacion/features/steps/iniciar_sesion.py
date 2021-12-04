@@ -9,11 +9,6 @@ def step_impl(context):
     context.driver.get(context.url)
 
 
-@given(u'me dirijo a la pantalla de login')
-def step_impl(context):
-    context.driver.get(f"{context.url}{'login'}")
-
-
 @given(u'capturo el usuario "{usuario}" y la contraseña "{contra}"')
 def step_impl(context, usuario, contra):
     context.driver.find_element_by_name('username').send_keys(usuario)

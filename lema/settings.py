@@ -1,5 +1,7 @@
 import os
 
+from django.urls.base import reverse_lazy
+
 """
 Django settings for lema project.
 
@@ -120,6 +122,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+LOGIN_URL = reverse_lazy('empleados:login')
 
 
 # Static files (CSS, JavaScript, Images)
