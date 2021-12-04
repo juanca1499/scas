@@ -39,6 +39,6 @@ class SolicitudForm(forms.ModelForm):
             'curp': forms.TextInput(attrs={'class': 'form-control'}),
             'correo': forms.TextInput(attrs={'class': 'form-control'}),
             'resumen': forms.Textarea(attrs={'class': 'form-control'}),
-            'estado':forms.Select(attrs={'class':'form-select'}),
+            'estatus':forms.Select(attrs={'class':'form-select'}),
             #'usuario':forms.HiddenInput(attrs={'class':'form-control'})
         }

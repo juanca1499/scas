@@ -32,7 +32,7 @@ class Solicitud(models.Model):
     fecha_nacimiento = models.DateField()
     correo = models.EmailField('Correo', max_length=50)
     resumen = models.TextField('Resumen de la solicitud',blank=True, null=True)
-    estado = models.ForeignKey('solicitudes.EstadoSolicitud', related_name='Estado de la solicitud', on_delete=models.CASCADE)
+    estatus = models.ForeignKey('solicitudes.EstatusSolicitud', related_name='Estatus de la solicitud', on_delete=models.CASCADE)
     #usuario = models.ForeignKey("usuarios.Usuario",verbose_name='Usuario',on_delete=models.CASCADE)
     
     def __str__(self):
@@ -43,8 +43,8 @@ class Solicitud(models.Model):
         verbose_name_plural = 'Solicitudes'
         
         
-class EstadoSolicitud(models.Model):
-    estado = models.CharField("Estado de la solicitud", max_length=20)
+class EstatusSolicitud(models.Model):
+    estatus = models.CharField("Estatus de la solicitud", max_length=20)
 
     def __str__(self):
         return self.estado

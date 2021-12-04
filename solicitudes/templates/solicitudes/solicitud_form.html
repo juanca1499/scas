@@ -1,21 +1,120 @@
 {% extends 'base.html' %}
 
 {% block headertitle %}
-    Nueva solicitud
+    {{etiqueta}} solicitud
 {% endblock %}
 
 {% block contenido %}
     {% if messages %}
-       {% for message in messages %}
-            <div id="mensaje" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}succes{%endif%}">
                 {{message}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
     {% endif %}
+
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-        <input class="btn btn-primary btn-lg" type="submit" value="Registrar">
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos del solicitante</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.nombre.errors}}
+                        {{form.nombre.label_tag}}
+                        {{form.nombre}}
+                    </p>
+                    <p>
+                        {{form.apellido_paterno.errors}}
+                        {{form.apellido_paterno.label_tag}}
+                        {{form.apellido_paterno}}
+                    </p>
+                    <p>
+                        {{form.apellido_materno.errors}}
+                        {{form.apellido_materno.label_tag}}
+                        {{form.apellido_materno}}
+                    </p>
+                    <p>
+                        {{form.curp.errors}}
+                        {{form.curp.label_tag}}
+                        {{form.curp}}
+                    </p>
+                    <p>
+                        {{form.fecha_nacimiento.errors}}
+                        {{form.fecha_nacimiento.label_tag}}
+                        {{form.fecha_nacimiento}}
+                    </p>
+                    <p>
+                        {{form.telefono.errors}}
+                        {{form.telefono.label_tag}}
+                        {{form.telefono}}
+                    </p>
+                    <p>
+                        {{form.correo.errors}}
+                        {{form.correo.label_tag}}
+                        {{form.correo}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos del domicilio</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.calle.errors}}
+                        {{form.calle.label_tag}}
+                        {{form.calle}}
+                    </p>
+                    <p>
+                        {{form.numero.errors}}
+                        {{form.numero.label_tag}}
+                        {{form.numero}}
+                    </p>
+                    <p>
+                        {{form.codigo_postal.errors}}
+                        {{form.codigo_postal.label_tag}}
+                        {{form.codigo_postal}}
+                    </p>
+                    <p>
+                        {{form.seccion.errors}}
+                        {{form.seccion.label_tag}}
+                        {{form.seccion}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos de la solicitud</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.fecha.errors}}
+                        {{form.fecha.label_tag}}
+                        {{form.fecha}}
+                    </p>
+                    <p>
+                        {{form.estado.errors}}
+                        {{form.estado.label_tag}}
+                        {{form.estado}}
+                    </p>
+                    <p>
+                        {{form.resumen.errors}}
+                        {{form.resumen.label_tag}}
+                        {{form.resumen}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <div>  
+            <a class="btn btn-secondary btn-lg" href="{% url 'solicitudes:lista' %}">Regresar</a>    
+            <input type="submit" class="btn btn-primary btn-lg" id="submit" value="{{boton}}">
+        </div>
     </form>
 {% endblock %}
