@@ -129,12 +129,6 @@ def step_impl(context, resumen):
     context.driver.find_element_by_id('id_resumen').send_keys(resumen)
 
 
-@when(u'presiono el botón "{boton}"')
-def step_impl(context, boton):
-    context.driver.find_element_by_id('submit').click()
-    time.sleep(5)
-
-
 @then(u'el sistema me reedirecciona a la lista de solicitudes')
 def step_impl(context):
     url_actual = context.driver.current_url

@@ -15,12 +15,6 @@ def step_impl(context, usuario, contra):
     context.driver.find_element_by_name('password').send_keys(contra)
     
 
-@given(u'capturo el usuario dado de baja "{usuario}" y la contraseña "{contra}"')
-def step_impl(context, usuario, contra):
-    context.driver.find_element_by_name('username').send_keys(usuario)
-    context.driver.find_element_by_name('password').send_keys(contra)
-
-
 @when(u'presiono el botón de inicio de sesión')
 def step_impl(context):
     context.driver.find_element_by_tag_name('button').click()

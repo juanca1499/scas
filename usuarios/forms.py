@@ -16,7 +16,7 @@ class FormUsuario(forms.ModelForm):
             'calle':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Calle'}),
             'numero':forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Número'}),
             'colonia':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Colonia'}),
-            'codigo_postal':forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Código postal'}),
+            'codigo_postal':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal'}),
             'estado':forms.Select(attrs={'class':'form-control', 'placeholder':'Estado'}),
             'municipio':forms.Select(attrs={'class':'form-control', 'placeholder':'Municipio'}),
             'localidad':forms.Select(attrs={'class':'form-control', 'placeholder':'Localidad'}),
