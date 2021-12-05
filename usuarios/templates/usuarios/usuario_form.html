@@ -12,13 +12,16 @@
 {% block contenido %}
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}succes{%endif%}">
+            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}succes{%endif%} alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 {{message}}
             </div>
         {% endfor %}
     {% endif %}
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <section>
             <div class="container">
@@ -40,39 +43,10 @@
                         {{form.segundo_apellido.label_tag}}
                         {{form.segundo_apellido}}
                     </p>
-                </p>
-            </div>
-        </section>
-
-        <section>
-            <div class="container">
-                <p style="display: inline;"><b>Datos del domicilio</b></p>
-                <hr>
-                <p style="display: inline;">
                     <p>
-                        {{form.calle.errors}}
-                        {{form.calle.label_tag}}
-                        {{form.calle}}
-                    </p>
-                    <p>
-                        {{form.numero.errors}}
-                        {{form.numero.label_tag}}
-                        {{form.numero}}
-                    </p>
-                    <p>
-                        {{form.colonia.errors}}
-                        {{form.colonia.label_tag}}
-                        {{form.colonia}}
-                    </p>
-                    <p>
-                        {{form.codigo_postal.errors}}
-                        {{form.codigo_postal.label_tag}}
-                        {{form.codigo_postal}}
-                    </p>
-                    <p>
-                        {{form.correo.errors}}
-                        {{form.correo.label_tag}}
-                        {{form.correo}}
+                        {{form.email.errors}}
+                        {{form.email.label_tag}}
+                        {{form.email}}
                     </p>
                     <p>
                         {{form.telefono.errors}}
@@ -102,6 +76,11 @@
                         {{form.numero.errors}}
                         {{form.numero.label_tag}}
                         {{form.numero}}
+                    </p>
+                    <p>
+                        {{form.colonia.errors}}
+                        {{form.colonia.label_tag}}
+                        {{form.colonia}}
                     </p>
                     <p>
                         {{form.codigo_postal.errors}}

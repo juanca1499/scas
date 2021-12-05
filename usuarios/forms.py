@@ -22,7 +22,7 @@ class FormUsuario(forms.ModelForm):
             'localidad':forms.Select(attrs={'class':'form-control', 'placeholder':'Localidad'}),
             'email':forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Correo electrónico'}),
             'telefono':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Teléfono'}),
-            'ine':forms.FileInput(attrs={'class':'form-control', 'placeholder':'INE'}),
+            'ine':forms.FileInput(attrs={'class':'form-control'}),
             'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre de usuario'}),
             'password':forms.TextInput(attrs={'class':'form-control','placeholder':'Contraseña'}),
         }

@@ -15,84 +15,87 @@ def step_impl(context, boton):
 
 @given(u'capturo el nombre "{nombre}"')
 def step_impl(context, nombre):
-    pass
+    context.driver.find_element_by_id('id_first_name').send_keys(nombre)
 
 
 @given(u'capturo el primer apellido "{primer_apellido}"')
 def step_impl(context, primer_apellido):
-    pass
+    context.driver.find_element_by_id('id_last_name').send_keys(primer_apellido)
 
 
 @given(u'capturo el segundo apellido "{segundo_apellido}"')
 def step_impl(context, segundo_apellido):
-    pass
+    context.driver.find_element_by_id('id_segundo_apellido').send_keys(segundo_apellido)
 
 
 @given(u'capturo la calle "{calle}"')
 def step_impl(context, calle):
-    pass
+    context.driver.find_element_by_id('id_calle').send_keys(calle)
 
 
 @given(u'capturo en el numero "{numero}"')
 def step_impl(context, numero):
-    pass
+    context.driver.find_element_by_id('id_numero').send_keys(numero)
 
 
 @given(u'capturo la colonia "{colonia}"')
 def step_impl(context, colonia):
-    pass
+    context.driver.find_element_by_id('id_colonia').send_keys(colonia)
 
 
 @given(u'capturo el código postal "{codigo_postal}"')
 def step_impl(context, codigo_postal):
-    pass
-
-
-@given(u'elijo la localidad "{localidad}"')
-def step_impl(context, localidad):
-    pass
-
-
-@given(u'elijo el municipio "{municipio}"')
-def step_impl(context, municipio):
-    pass
+    context.driver.find_element_by_id('id_codigo_postal').send_keys(codigo_postal)
 
 
 @given(u'elijo el estado "{estado}"')
 def step_impl(context, estado):
-    pass
+    select = Select(context.driver.find_element_by_id('id_estado'))
+    select.select_by_visible_text(estado)
+
+
+@given(u'elijo el municipio "{municipio}"')
+def step_impl(context, municipio):
+    select = Select(context.driver.find_element_by_id('id_municipio'))
+    select.select_by_visible_text(municipio)
+
+
+@given(u'elijo la localidad "{localidad}"')
+def step_impl(context, localidad):
+    select = Select(context.driver.find_element_by_id('id_localidad'))
+    select.select_by_visible_text(localidad)
 
 
 @given(u'capturo el correo "{correo}"')
 def step_impl(context, correo):
-    pass
+    context.driver.find_element_by_id('id_email').send_keys(correo)
 
 
-@given(u'capturo el teléfono "{4921736547}"')
+@given(u'capturo el teléfono "{telefono}"')
 def step_impl(context, telefono):
-    pass
+    context.driver.find_element_by_id('id_telefono').send_keys(telefono)
 
 
 @given(u'subo fotografía de mi INE')
 def step_impl(context):
-    pass
+    context.driver.find_element_by_id('id_ine').send_keys(r'C:/Users/karlo/Desktop/PruebasArchivos/Cred.pdf')
 
 
 @given(u'capturo el usuario "{usuario}"')
 def step_impl(context, usuario):
-    pass
+    context.driver.find_element_by_id('id_username').send_keys(usuario)
 
 
 @given(u'capturar la contraseña "{contra}"')
 def step_impl(context, contra):
-    pass
+    context.driver.find_element_by_id('id_password').send_keys(contra)
 
 
 @then(u'puedo ver al usuario "{usuario}" en la lista de usuarios.')
 def step_impl(context, usuario):
-    pass
+    context.test.assertIn(usuario, context.driver.page_source)
 
 
 @then(u'puedo ver el mensaje "{mensaje}".')
-def step_impl(context):
-    pass
+def step_impl(context, mensaje):
+    context.test.assertIn(mensaje, context.driver.page_source)

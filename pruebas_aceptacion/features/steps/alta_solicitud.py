@@ -131,8 +131,8 @@ def step_impl(context, resumen):
 
 @when(u'presiono el botón "{boton}"')
 def step_impl(context, boton):
-    context.driver.find_element_by_xpath(
-        '//*[@id="content"]/div/div[2]/form/input[2]').click()
+    context.driver.find_element_by_id('submit').click()
+    time.sleep(5)
 
 
 @then(u'el sistema me reedirecciona a la lista de solicitudes')

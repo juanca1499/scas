@@ -12,15 +12,15 @@ Característica: Como administrador me gustaría poder registrar
     Y capturo en el numero "43"
     Y capturo la colonia "Camino Real"
     Y capturo el código postal "98613"
-    Y elijo la localidad "Guadalupe"
-    Y elijo el municipio "Guadalupe"
     Y elijo el estado "Zacatecas"
+    Y elijo el municipio "Guadalupe"
+    Y elijo la localidad "Guadalupe"
     Y capturo el correo "jouselenuv@gmail.com"
     Y capturo el teléfono "4921736547"
     Y subo fotografía de mi INE
     Y capturo el usuario "jozuelenuv"
     Y capturar la contraseña "jozue123"
-    Cuando presiono el botón "Guardar"
+    Cuando presiono el botón "Agregar"
     Entonces puedo ver al usuario "jozuelenuv" en la lista de usuarios.  
 
     Escenario: Datos de registro incorrectos
@@ -34,13 +34,13 @@ Característica: Como administrador me gustaría poder registrar
     Y capturo en el numero "43"
     Y capturo la colonia "Camino Real"
     Y capturo el código postal "98613"
-    Y elijo la localidad "Guadalupe"
-    Y elijo el municipio "Guadalupe"
     Y elijo el estado "Zacatecas"
+    Y elijo el municipio "Guadalupe"
+    Y elijo la localidad "Guadalupe"
     Y capturo el correo "jouselenuv@gmail.com"
     Y capturo el teléfono "4921736547"
     Y subo fotografía de mi INE
     Y capturo el usuario "jozuelenuv"
     Y capturar la contraseña "jozue123"
     Cuando presiono el botón "Guardar"
-    Entonces puedo ver el mensaje "Hay datos incorrectos en el formulario".
+    Entonces puedo ver el mensaje "Hay datos inválidos en el formulario".

@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView,UpdateView
+from django.urls import reverse_lazy
 
 from .models import Usuario
 from .forms import FormUsuario
@@ -44,3 +45,11 @@ class UsuarioNuevo(CreateView):
     model = Usuario
     extra_context = {'etiqueta': 'Nuevo', 'boton': 'Agregar'}
     form_class = FormUsuario
+    success_url = reverse_lazy('usuarios:lista')
+    
+    def form_invalid(self, form):
+        messages.error(self.request, 'Hay datos inválidos en el formulario.')
+        print(form.data)
+        print()
+        print(form.errors)
+        return super(UsuarioNuevo, self).form_invalid(form)
