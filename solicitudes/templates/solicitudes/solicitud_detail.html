@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
 {% block headertitle %}
     Detalles de la solicitud
 {% endblock %}
@@ -59,7 +63,6 @@
             </div>
         </section>
     </div>
-    <hr>
     <br>
     <a class="btn btn-secondary btn-lg" href="{% url 'solicitudes:lista' %}">Regresar</a>
 

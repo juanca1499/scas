@@ -9,13 +9,13 @@ class DateInput(forms.DateInput):
 class SolicitudForm(forms.ModelForm):
     fecha = forms.DateField(label='Fecha',
                             widget=DateInput(
-                                format='%dd-%mm-%Y',
+                                format='%Y-%m-%d',
                                 attrs={'class': 'form-control'}),
                             required=False)
 
     fecha_nacimiento = forms.DateField(label='Fecha de nacimiento',
                                        widget=DateInput(
-                                           format='%dd-%mm-%Y',
+                                           format='%Y-%m-%d',
                                            attrs={'class': 'form-control'}),
                                        required=False)
     
@@ -39,9 +39,9 @@ class SolicitudForm(forms.ModelForm):
             'curp': forms.TextInput(attrs={'class': 'form-control'}),
             'correo': forms.TextInput(attrs={'class': 'form-control'}),
             'resumen': forms.Textarea(attrs={'class': 'form-control'}),
-            'estado':forms.Select(attrs={'class':'form-control', 'placeholder':'Estado'}),
-            'municipio':forms.Select(attrs={'class':'form-control', 'placeholder':'Municipio'}),
-            'localidad':forms.Select(attrs={'class':'form-control', 'placeholder':'Localidad'}),
-            'estatus':forms.Select(attrs={'class':'form-control', 'placeholder':'Estatus'}),
+            'estado':forms.Select(attrs={'class':'form-select', 'placeholder':'Estado'}),
+            'municipio':forms.Select(attrs={'class':'form-select', 'placeholder':'Municipio'}),
+            'localidad':forms.Select(attrs={'class':'form-select', 'placeholder':'Localidad'}),
+            'estatus':forms.Select(attrs={'class':'form-select', 'placeholder':'Estatus'}),
             'usuario':forms.HiddenInput(attrs={'class':'form-control'})
         }

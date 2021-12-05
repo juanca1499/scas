@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-{% endblock %}
-
 {% block headertitle %}
     <!-- Se muestra el encabezado de la página, en este encabezado se encuentra el título de la página (Lista de solicitudes),
          y el botón que nos permite agregar un nuevo registro -->
@@ -85,7 +81,7 @@
                             <td>{{solicitud.telefono}}</td>
                             <td>{{solicitud.codigo_postal}}</td>
                             <td>{{solicitud.seccion}}</td>
-                            <td>{{persona.estatus}}</td>
+                            <td>{{solicitud.estatus}}</td>
                             <td>
                                 <!-- Se muestra el botón que sirve para ver todos los detalles de la persona desaparecida -->
                                 <a class="btn btn-success btn-sm" href="{% url 'solicitudes:detalle' solicitud.id %}">
