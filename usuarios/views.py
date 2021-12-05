@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.contrib.auth.views import LogoutView
 
 
 # Función correspondiente al login de los usuarios.
@@ -24,3 +25,8 @@ def login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+
+# Clase correspondiente al logout de los usuarios.
+class UsuarioLogout(LogoutView):
+    template_name='login.html'

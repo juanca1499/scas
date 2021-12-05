@@ -125,7 +125,9 @@ USE_L10N = True
 USE_TZ = True
 
 
-LOGIN_URL = reverse_lazy('empleados:login')
+LOGIN_URL = reverse_lazy('usuarios:login')
+LOGIN_REDIRECT_URL = reverse_lazy('solicitudes:lista')
+LOGOUT_REDIRECT_URL = reverse_lazy('usuarios:login')
 
 
 # Static files (CSS, JavaScript, Images)
