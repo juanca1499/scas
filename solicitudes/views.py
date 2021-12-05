@@ -5,9 +5,10 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
 from .models import Solicitud
-from usuarios.models import Usuario
+from usuarios.models import Usuario, Estado, Municipio, Localidad
 from .forms import SolicitudForm
 
 
@@ -66,3 +67,36 @@ class EditarSolicitud(LoginRequiredMixin, UpdateView):
 class DetalleSolicitud(LoginRequiredMixin, DetailView):
     model = Solicitud
     context_object_name = "solicitud"
+    
+    
+def obtiene_municipios(request):
+    # estado = get_object_or_404(Estado, id=id_estado)
+    if request.method == 'GET':
+        return JsonResponse({'error':'Petición incorrecta'}, safe=False,  status=403)
+    id_estado = request.POST.get('id')
+    municipios = Municipio.objects.filter(estado_id=id_estado)
+    json = []
+    if not municipios:
+        json.append({'error':'No se encontrar municipios para ese estado'})
+    else:
+        json.append({'id':-1, 'nombre':'---------'})
+        
+    for municipio in municipios:
+        json.append({'id':municipio.id, 'nombre':municipio.nombre})
+    return JsonResponse(json, safe=False)
+
+def obtiene_localidades(request):
+    # estado = get_object_or_404(Estado, id=id_estado)
+    if request.method == 'GET':
+        return JsonResponse({'error':'Petición incorrecta'}, safe=False,  status=403)
+    id_municipio = request.POST.get('id')
+    localidades = Localidad.objects.filter(municipio_id=id_municipio)
+    json = []
+    if not localidades:
+        json.append({'error':'No se encontrar localidades para ese municipio'})
+    else:
+        json.append({'id':-1, 'nombre':'---------'})
+        
+    for localidad in localidades:
+        json.append({'id':localidad.id, 'nombre':localidad.nombre})
+    return JsonResponse(json, safe=False)
