@@ -34,17 +34,17 @@ class Solicitud(models.Model):
     telefono = models.CharField('Teléfono', max_length=10, validators=[
                                 MinLengthValidator(10), solo_numeros])
     curp = models.CharField('CURP', max_length=18, validators=[curp])
-    #localidad = models.ForeignKey("usuarios.Localidad",verbose_name='Localidad',on_delete=models.CASCADE)
-    #municipio = models.ForeignKey("usuarios.Municipio",verbose_name='Municipio',on_delete=models.CASCADE)
-    #estado = models.ForeignKey("usuarios.Estado",verbose_name='Estado',on_delete=models.CASCADE)
+    estado = models.ForeignKey("usuarios.Estado",verbose_name='Estado',on_delete=models.CASCADE)
+    municipio = models.ForeignKey("usuarios.Municipio",verbose_name='Municipio',on_delete=models.CASCADE)
+    localidad = models.ForeignKey("usuarios.Localidad",verbose_name='Localidad',on_delete=models.CASCADE)
     fecha_nacimiento = models.DateField()
     correo = models.EmailField('Correo', max_length=50, blank=True, null=True)
     resumen = models.TextField('Resumen de la solicitud', blank=True, null=True)
-    estatus = models.ForeignKey(EstatusSolicitud, verbose_name='Estatus de la solicitud', on_delete=models.CASCADE, default=1)
-    #usuario = models.ForeignKey("usuarios.Usuario",verbose_name='Usuario',on_delete=models.CASCADE)
+    estatus = models.ForeignKey(EstatusSolicitud, verbose_name='Estatus de la solicitud', on_delete=models.CASCADE)
+    usuario = models.ForeignKey("usuarios.Usuario",verbose_name='Usuario',on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.nombre
+        return self.curp
     
     class Meta:
         verbose_name = 'Solicitud'

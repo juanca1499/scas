@@ -19,9 +19,9 @@ class SolicitudForm(forms.ModelForm):
                                            attrs={'class': 'form-control'}),
                                        required=False)
     
-    #def __init__(self, *args, **kwargs):
-    #    super(SolicitudForm, self).__init__(*args, **kwargs)
-    #    self.fields['usuario'].required = False
+    def __init__(self, *args, **kwargs):
+        super(SolicitudForm, self).__init__(*args, **kwargs)
+        self.fields['usuario'].required = False
 
     class Meta:
         model = Solicitud
@@ -39,6 +39,9 @@ class SolicitudForm(forms.ModelForm):
             'curp': forms.TextInput(attrs={'class': 'form-control'}),
             'correo': forms.TextInput(attrs={'class': 'form-control'}),
             'resumen': forms.Textarea(attrs={'class': 'form-control'}),
+            'estado':forms.Select(attrs={'class':'form-select'}),
+            'municipio':forms.Select(attrs={'class':'form-select'}),
+            'localidad':forms.Select(attrs={'class':'form-select'}),
             'estatus':forms.Select(attrs={'class':'form-select'}),
-            #'usuario':forms.HiddenInput(attrs={'class':'form-control'})
+            'usuario':forms.HiddenInput(attrs={'class':'form-control'})
         }
