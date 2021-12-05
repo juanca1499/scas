@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headertitle %}
+    {{etiqueta}} usuario
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}succes{%endif%}">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos personales</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.first_name.errors}}
+                        {{form.first_name.label_tag}}
+                        {{form.first_name}}
+                    </p>
+                    <p>
+                        {{form.last_name.errors}}
+                        {{form.last_name.label_tag}}
+                        {{form.last_name}}
+                    </p>
+                    <p>
+                        {{form.segundo_apellido.errors}}
+                        {{form.segundo_apellido.label_tag}}
+                        {{form.segundo_apellido}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos del domicilio</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.calle.errors}}
+                        {{form.calle.label_tag}}
+                        {{form.calle}}
+                    </p>
+                    <p>
+                        {{form.numero.errors}}
+                        {{form.numero.label_tag}}
+                        {{form.numero}}
+                    </p>
+                    <p>
+                        {{form.colonia.errors}}
+                        {{form.colonia.label_tag}}
+                        {{form.colonia}}
+                    </p>
+                    <p>
+                        {{form.codigo_postal.errors}}
+                        {{form.codigo_postal.label_tag}}
+                        {{form.codigo_postal}}
+                    </p>
+                    <p>
+                        {{form.correo.errors}}
+                        {{form.correo.label_tag}}
+                        {{form.correo}}
+                    </p>
+                    <p>
+                        {{form.telefono.errors}}
+                        {{form.telefono.label_tag}}
+                        {{form.telefono}}
+                    </p>
+                    <p>
+                        {{form.ine.errors}}
+                        {{form.ine.label_tag}}
+                        {{form.ine}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos del domicilio</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.calle.errors}}
+                        {{form.calle.label_tag}}
+                        {{form.calle}}
+                    </p>
+                    <p>
+                        {{form.numero.errors}}
+                        {{form.numero.label_tag}}
+                        {{form.numero}}
+                    </p>
+                    <p>
+                        {{form.codigo_postal.errors}}
+                        {{form.codigo_postal.label_tag}}
+                        {{form.codigo_postal}}
+                    </p>
+                    <p>
+                        {{form.estado.errors}}
+                        {{form.estado.label_tag}}
+                        {{form.estado}}
+                    </p>
+                    <p>
+                        {{form.municipio.errors}}
+                        {{form.municipio.label_tag}}
+                        {{form.municipio}}
+                    </p>
+                    <p>
+                        {{form.localidad.errors}}
+                        {{form.localidad.label_tag}}
+                        {{form.localidad}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos del usuario</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.username.errors}}
+                        {{form.username.label_tag}}
+                        {{form.username}}
+                    </p>
+                    <p>
+                        {{form.password.errors}}
+                        {{form.password.label_tag}}
+                        {{form.password}}
+                    </p>
+                </p>
+            </div>
+        </section>
+        <div>  
+            <a class="btn btn-secondary btn-lg" href="{% url 'usuarios:lista' %}">Regresar</a>    
+            <input type="submit" class="btn btn-primary btn-lg" id="submit" value="{{boton}}">
+        </div>
+    </form>
+{% endblock %}

@@ -5,8 +5,10 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, DeleteView,UpdateView
 
 from .models import Usuario
+from .forms import FormUsuario
 
 
 # Función correspondiente al login de los usuarios.
@@ -37,3 +39,8 @@ class UsuarioLogout(LogoutView):
 class UsuarioLista(ListView):
     model = Usuario
     context_object_name = 'usuarios'
+    
+class UsuarioNuevo(CreateView):
+    model = Usuario
+    extra_context = {'etiqueta': 'Nuevo', 'boton': 'Agregar'}
+    form_class = FormUsuario
