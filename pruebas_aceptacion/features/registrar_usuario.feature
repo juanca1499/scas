@@ -3,8 +3,8 @@ Característica: Como administrador me gustaría poder registrar
 
     Escenario: Datos de registro correctos
     Dado que me encuentro logueado en el sistema
-    Y selecciono el botón usuarios
-    Y presiono el botón "Nuevo"
+    Y selecciono el botón "Usuarios"
+    Y presiono el botón "Agregar"
     Y capturo el nombre "Josue" 
     Y capturo el primer apellido "Gonzalez" 
     Y capturo el segundo apellido "Pinedo"
@@ -25,8 +25,8 @@ Característica: Como administrador me gustaría poder registrar
 
     Escenario: Datos de registro incorrectos
     Dado que me encuentro logueado en el sistema
-    Y selecciono el botón usuarios
-    Y presiono el botón "Nuevo"
+    Y selecciono el botón "Usuarios"
+    Y presiono el botón "Agregar"
     Y capturo el nombre "Josue" 
     Y capturo el primer apellido "123Gonzalez%$12"  
     Y capturo el segundo apellido "Pinedo"
