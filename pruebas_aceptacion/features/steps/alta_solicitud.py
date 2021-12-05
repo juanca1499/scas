@@ -139,9 +139,3 @@ def step_impl(context, boton):
 def step_impl(context):
     url_actual = context.driver.current_url
     assert url_actual == context.url_solicitudes
-
-
-@then(u'el sistema me muestra el mensaje "{mensaje}"')
-def step_impl(context, mensaje):
-    div_error = context.driver.find_element_by_id('mensaje')
-    assert div_error.text == mensaje

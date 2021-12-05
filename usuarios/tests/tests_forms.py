@@ -1,6 +1,5 @@
 from django.test import TestCase
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
 
 from usuarios.models import Usuario, Estado, Municipio, Localidad
 
