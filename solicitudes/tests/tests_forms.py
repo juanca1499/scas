@@ -10,25 +10,21 @@ class TestForms(TestCase):
     def setUp(self):
         test_view = TestViews()
         
-        self.solicitud = {
-            'fecha': '2021-11-17',
-            'nombre': 'Gabriel',
-            'primer_apellido': 'Díaz',
-            'segundo_apellido': 'Curiel',
-            'calle': 'Montes de Oca',
-            'numero': 3,
-            'codigo_postal': '98613',
-            'seccion': '0629',
-            'telefono': '4941025153',
-            'curp': 'DICC990912HZSZRS07',
-            'fecha_nacimiento': '1999-09-12',
-            'estado': test_view.agrega_estado(),
-            'municipio': test_view.agrega_municipio(),
-            'localidad': test_view.agrega_localidad(),
-            'estatus': test_view.agrega_estatus(),
-            'correo': 'pruebas@gmail.com',
-            'resumen': 'Solicitud 1',
-            'usuario':test_view.crear_usuario()
+        self.usuario = {
+            'first_name' : 'Juan Carlos',
+            'last_name' : 'García',
+            'calle' : 'Rafael Acuña',
+            'numero' : 9,
+            'colonia' : 'Artesanos',
+            'codigo_postal' : 99343,
+            'estado' : estado,
+            'municipio' : municipio,
+            'localidad' : localidad,
+            'email' : 'garciamjuancarlos14@gmail.com',
+            'telefono' : '4949428829',
+            'ine' : None,
+            'username' : 'juca',
+            'password' : 'juca123'
         }
     
     def test_solicitud_form_valido(self):

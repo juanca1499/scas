@@ -15,6 +15,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = None,
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -38,6 +39,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = None,
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -61,6 +63,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = None,
                 numero = 9,
                 colonia = 'Artesanos',
@@ -84,6 +87,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = None,
                 colonia = 'Artesanos',
@@ -107,6 +111,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = None,
@@ -130,6 +135,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -153,6 +159,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -176,6 +183,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -199,6 +207,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -222,6 +231,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -245,6 +255,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -268,6 +279,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -291,6 +303,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -315,6 +328,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -338,6 +352,7 @@ class TestModels(TestCase):
             Usuario.objects.create_user(
                 first_name = 'Juan Carlos',
                 last_name = 'García',
+                segundo_apellido = 'Murillo',
                 calle = 'Rafael Acuña',
                 numero = 9,
                 colonia = 'Artesanos',
@@ -360,6 +375,7 @@ class TestModels(TestCase):
         Usuario.objects.create_user(
             first_name = 'Juan Carlos',
             last_name = 'García',
+            segundo_apellido = 'Murillo',
             calle = 'Rafael Acuña',
             numero = 9,
             colonia = 'Artesanos',
