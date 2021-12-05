@@ -1,5 +1,6 @@
 from behave import given, when, then
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 
@@ -89,6 +90,12 @@ def step_impl(context, usuario):
 @given(u'capturar la contraseña "{contra}"')
 def step_impl(context, contra):
     context.driver.find_element_by_id('id_password').send_keys(contra)
+    time.sleep(3)
+
+
+@when(u'presiono el botón "{boton}"')
+def step_impl(context, boton):
+    context.driver.find_element_by_id('submit').click()
 
 
 @then(u'puedo ver al usuario "{usuario}" en la lista de usuarios.')
