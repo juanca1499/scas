@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+
+{% block headertitle %}
+    {{etiqueta}} estudio socioeconómico
+{% endblock %}
+
+{% block contenido %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}succes{%endif%}">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>información general</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.folio.errors}}
+                        {{form.folio.label_tag}}
+                        {{form.folio}}
+                    </p>
+                    <p>
+                        {{form.fecha_actual.errors}}
+                        {{form.fecha_actual.label_tag}}
+                        {{form.fecha_actual}}
+                    </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Comprobantes oficiales</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.credencial.errors}}
+                        {{form.credencial.label_tag}}
+                        {{form.credencial}}
+                    </p>
+                    <p>
+                        {{form.comprobante_domicilio.errors}}
+                        {{form.comprobante_domicilio.label_tag}}
+                        {{form.comprobante_domicilio}}
+                    </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Información del solicitante</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.nombre.errors}}
+                        {{form.nombre.label_tag}}
+                        {{form.nombre}}
+                    </p>
+                    <p>
+                        {{form.primer_apellido.errors}}
+                        {{form.primer_apellido.label_tag}}
+                        {{form.primer_apellido}}
+                    </p>
+                    <p>
+                        {{form..segundo_apellido.errors}}
+                        {{form.segundo_apellido.label_tag}}
+                        {{form.segundo_apellido}}
+                    </p>
+                    <p>
+                        {{form.curp.errors}}
+                        {{form.curp.label_tag}}
+                        {{form.curp}}
+                    </p>
+                    <p>
+                        {{form.fecha_nacimiento.errors}}
+                        {{form.fecha_nacimiento.label_tag}}
+                        {{form.fecha_nacimiento}}
+                    </p>
+                    <p>
+                        {{form.edad.errors}}
+                        {{form.edad.label_tag}}
+                        {{form.edad}}
+                    </p>
+                    <p>
+                        {{form.jefe_familia.errors}}
+                        {{form.jefe_familia.label_tag}}
+                        {{form.jefe_familia}}
+                    </p>
+                    <p>
+                        {{form.ocupacion.errors}}
+                        {{form.ocupacion.label_tag}}
+                        {{form.ocupacion}}
+                    </p>
+                    <p>
+                        {{form.escolaridad.errors}}
+                        {{form.escolaridad.label_tag}}
+                        {{form.escolaridad}}
+                    </p>
+                    <p>
+                        {{form.estado_civil.errors}}
+                        {{form.estado_civil.label_tag}}
+                        {{form.estado_civil}}
+                    </p>
+                    <p>
+                        {{form.discapacidad.errors}}
+                        {{form.discapacidad.label_tag}}
+                        {{form.discapacidad}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Datos del domicilio</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.calle.errors}}
+                        {{form.calle.label_tag}}
+                        {{form.calle}}
+                    </p>
+                    <p>
+                        {{form.numero.errors}}
+                        {{form.numero.label_tag}}
+                        {{form.numero}}
+                    </p>
+                    <p>
+                        {{form.colonia.errors}}
+                        {{form.colonia.label_tag}}
+                        {{form.colonia}}
+                    </p>
+                    <p>
+                        {{form.codigo_postal.errors}}
+                        {{form.codigo_postal.label_tag}}
+                        {{form.codigo_postal}}
+                    </p>
+                    <p>
+                        {{form.localidad.errors}}
+                        {{form.localidad.label_tag}}
+                        {{form.localidad}}
+                    </p>
+                    <p>
+                        {{form.municipio.errors}}
+                        {{form.municipio.label_tag}}
+                        {{form.municipio}}
+                    </p>
+                    <p>
+                        {{form.estado.errors}}
+                        {{form.estado.label_tag}}
+                        {{form.estado}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Características de la casa</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.una_planta.errors}}
+                        {{form.una_planta.label_tag}}
+                        {{form.una_planta}}
+                    </p>
+                    <p>
+                        {{form.dos_planta.errors}}
+                        {{form.dos_planta.label_tag}}
+                        {{form.dos_planta}}
+                    </p>
+                    <p>
+                        {{form.tres_planta.errors}}
+                        {{form.tres_planta.label_tag}}
+                        {{form.tres_planta}}
+                    </p>
+                    <p>
+                        {{form.sala_comedor.errors}}
+                        {{form.sala_comedor.label_tag}}
+                        {{form.sala_comedor}}
+                    </p>
+                    <p>
+                        {{form.cocina.errors}}
+                        {{form.cocina.label_tag}}
+                        {{form.cocina}}
+                    </p>
+                    <p>
+                        {{form.patio.errors}}
+                        {{form.patio.label_tag}}
+                        {{form.patio}}
+                    </p>
+                    <p>
+                        {{form.cochera.errors}}
+                        {{form.cochera.label_tag}}
+                        {{form.cochera}}
+                    </p>
+                    <p>
+                        {{form.numero_recamaras.errors}}
+                        {{form.numero_recamaras.label_tag}}
+                        {{form.numero_recamaras}}
+                    </p>
+                    <p>
+                        {{form.numero_banios.errors}}
+                        {{form.numero_banios.label_tag}}
+                        {{form.numero_banios}}
+                    </p>
+                    <p>
+                        {{form.otros_caracteristicas_casa.errors}}
+                        {{form.otros_caracteristicas_casa.label_tag}}
+                        {{form.otros_caracteristicas_casa}}
+                    </p>
+                    <p>
+                        {{form.piso_es.errors}}
+                        {{form.piso_es.label_tag}}
+                        {{form.piso_es}}
+                    </p>
+                    <p>
+                        {{form.techo_es.errors}}
+                        {{form.techo_es.label_tag}}
+                        {{form.techo_es}}
+                    </p>
+                    <p>
+                        {{form.casa_es.errors}}
+                        {{form.casa_es.label_tag}}
+                        {{form.casa_es}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>¿Cuenta con los siguientes servicios?</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.casa_energia.errors}}
+                        {{form.casa_energia.label_tag}}
+                        {{form.casa_energia}}
+                    </p>
+                    <p>
+                        {{form.casa_drenaje.errors}}
+                        {{form.casa_drenaje.label_tag}}
+                        {{form.casa_drenaje}}
+                    </p>
+                    <p>
+                        {{form.casa_potable.errors}}
+                        {{form.casa_potable.label_tag}}
+                        {{form.casa_potable}}
+                    </p>
+                    <p>
+                        {{form.casa_gas.errors}}
+                        {{form.casa_gas.label_tag}}
+                        {{form.casa_gas}}
+                    </p>
+                    <p>
+                        {{form.casa_lavadora.errors}}
+                        {{form.casa_lavadora.label_tag}}
+                        {{form.casa_lavadora}}
+                    </p>
+                    <p>
+                        {{form.casa_refrigerador.errors}}
+                        {{form.casa_refrigerador.label_tag}}
+                        {{form.casa_refrigerador}}
+                    </p>
+                    <p>
+                        {{form.casa_tv.errors}}
+                        {{form.casa_tv.label_tag}}
+                        {{form.casa_tv}}
+                    </p>
+                    <p>
+                        {{form.casa_tel_fijo.errors}}
+                        {{form.casa_tel_fijo.label_tag}}
+                        {{form.casa_tel_fijo}}
+                    </p>
+                    <p>
+                        {{form.casa_tel_celular.errors}}
+                        {{form.casa_tel_celular.label_tag}}
+                        {{form.casa_tel_celular}}
+                    </p>
+                    <p>
+                        {{form.casa_microondas.errors}}
+                        {{form.casa_microondas.label_tag}}
+                        {{form.casa_microondas}}
+                    </p>
+                    <p>
+                        {{form.casa_radio.errors}}
+                        {{form.casa_radio.label_tag}}
+                        {{form.casa_radio}}
+                    </p>
+                    <p>
+                        {{form.casa_dvd.errors}}
+                        {{form.casa_dvd.label_tag}}
+                        {{form.casa_dvd}}
+                    </p>
+                    <p>
+                        {{form.casa_computadora.errors}}
+                        {{form.casa_computadora.label_tag}}
+                        {{form.casa_computadora}}
+                    </p>
+                    <p>
+                        {{form.casa_laptop.errors}}
+                        {{form.casa_laptop.label_tag}}
+                        {{form.casa_laptop}}
+                    </p>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <p style="display: inline;"><b>Salud</b></p>
+                <hr>
+                <p style="display: inline;">
+                    <p>
+                        {{form.servicio_salud.errors}}
+                        {{form.servicio_salud.label_tag}}
+                        {{form.servicio_salud}}
+                    </p>
+                    <p style="display: inline;"><b>Que enfermedades existen en la familia</b></p>
+                    <hr>
+                    <p>
+                        {{form.enfermedad_cancer.errors}}
+                        {{form.enfermedad_cancer.label_tag}}
+                        {{form.enfermedad_cancer}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_quemaduras.errors}}
+                        {{form.enfermedad_quemaduras.label_tag}}
+                        {{form.enfermedad_quemaduras}}
+                    </p>
+                    <p>
+                        {{form.enfemerdad_epilepsia.errors}}
+                        {{form.enfemerdad_epilepsia.label_tag}}
+                        {{form.enfemerdad_epilepsia}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_hipertension.errors}}
+                        {{form.enfermedad_hipertension.label_tag}}
+                        {{form.enfermedad_hipertension}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_presion_baja.errors}}
+                        {{form.enfermedad_presion_baja.label_tag}}
+                        {{form.enfermedad_presion_baja}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_discapacidad.errors}}
+                        {{form.enfermedad_discapacidad.label_tag}}
+                        {{form.enfermedad_discapacidad}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_cardiacos.errors}}
+                        {{form.enfermedad_cardiacos.label_tag}}
+                        {{form.enfermedad_cardiacos}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_estrabismo.errors}}
+                        {{form.enfermedad_estrabismo.label_tag}}
+                        {{form.enfermedad_estrabismo}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_renales.errors}}
+                        {{form.enfermedad_renales.label_tag}}
+                        {{form.enfermedad_renales}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_alergia.errors}}
+                        {{form.enfermedad_alergia.label_tag}}
+                        {{form.enfermedad_alergia}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_paladar_hendido.errors}}
+                        {{form.enfermedad_paladar_hendido.label_tag}}
+                        {{form.enfermedad_paladar_hendido}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_cardipatias.errors}}
+                        {{form.enfermedad_cardipatias.label_tag}}
+                        {{form.enfermedad_cardipatias}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_diabetes.errors}}
+                        {{form.enfermedad_diabetes.label_tag}}
+                        {{form.enfermedad_diabetes}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_alzhaimer.errors}}
+                        {{form.enfermedad_alzhaimer.label_tag}}
+                        {{form.enfermedad_alzhaimer}}
+                    </p>
+                    <p>
+                        {{form.enfermedad_otro.errors}}
+                        {{form.enfermedad_otro.label_tag}}
+                        {{form.enfermedad_otro}}
+                    </p>
+                    <p>
+                        {{form.receta.errors}}
+                        {{form.receta.label_tag}}
+                        {{form.receta}}
+                    </p>
+                </p>
+            </div>
+        </section>
+        <div>  
+            <a class="btn btn-secondary btn-lg" href="{% url 'estudio_socioeconomico:lista' %}">Regresar</a>    
+            <input type="submit" class="btn btn-primary btn-lg" id="submit" value="{{boton}}">
+        </div>
+    </form>
+{% endblock %}
