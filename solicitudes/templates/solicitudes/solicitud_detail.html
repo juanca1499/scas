@@ -4,6 +4,7 @@
     Detalles de la solicitud
 {% endblock %}
 
+
 {% block contenido %}
     <div id="svg_wrap">
         <section> 
@@ -17,6 +18,12 @@
                 {% endif %}
                 <p><b>CURP: </b>{{solicitud.curp}}</p>
                 <p><b>Fecha de nacimiento: </b>{{solicitud.fecha_nacimiento}}</p>
+                <br>
+                <p><b>Lugar de nacimiento:</b></p>
+                <p><b>Estado: </b>{{solicitud.estado}}</p>
+                <p><b>Municipio: </b>{{solicitud.municipio}}</p>
+                <p><b>Localidad: </b>{{solicitud.localidad}}</p>
+                <br>
                 <p><b>Teléfono: </b>{{solicitud.telefono}}</p>
                 {% if solicitud.correo != None %} <!-- Solo muestra el correo en caso de que haya sido capturado-->
                     <p><b>Correo Electrónico: </b>{{solicitud.correo}}</p> 

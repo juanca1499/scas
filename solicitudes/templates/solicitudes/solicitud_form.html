@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
 
 {% block headertitle %}
     {{etiqueta}} solicitud
@@ -15,6 +20,7 @@
 
     <form method="POST">
         {% csrf_token %}
+        {{form.usuario}}
         <section>
             <div class="container">
                 <p style="display: inline;"><b>Datos del solicitante</b></p>
@@ -45,6 +51,24 @@
                         {{form.fecha_nacimiento.label_tag}}
                         {{form.fecha_nacimiento}}
                     </p>
+                    <br>
+                    <p><b>Lugar de nacimiento:</b></p>
+                    <p>
+                        {{form.estado.errors}}
+                        {{form.estado.label_tag}}
+                        {{form.estado}}
+                    </p>
+                    <p>
+                        {{form.municipio.errors}}
+                        {{form.municipio.label_tag}}
+                        {{form.municipio}}
+                    </p>
+                    <p>
+                        {{form.localidad.errors}}
+                        {{form.localidad.label_tag}}
+                        {{form.localidad}}
+                    </p>
+                    <br>
                     <p>
                         {{form.telefono.errors}}
                         {{form.telefono.label_tag}}
