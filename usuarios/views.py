@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect
@@ -53,3 +53,11 @@ class UsuarioNuevo(CreateView):
         print()
         print(form.errors)
         return super(UsuarioNuevo, self).form_invalid(form)
+    
+def baja_usuario(request, pk):
+    if request.method == "POST":
+        usuario = get_object_or_404(Usuario, id=pk)
+        usuario.dado_baja = True
+        usuario.save()
+        messages.success(request, '¡Cuenta dada de baja con éxito!')
+    return redirect('usuarios:lista')

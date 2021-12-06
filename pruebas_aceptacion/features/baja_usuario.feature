@@ -6,5 +6,5 @@ Característica: Como administrador me gustaría
     Dado que me encuentro logueado en el sistema
     Y selecciono el botón "Usuarios"
     Y selecciono el usuario a dar de baja
-    Cuando presiono el botón "Sí, estoy seguro"
-    Entonces el sistema deberá mostrar el mensaje: "Cuenta dada de baja con éxito."
+    Cuando confirmo la acción
+    Entonces el sistema deberá mostrar el mensaje: "¡Cuenta dada de baja con éxito!"
