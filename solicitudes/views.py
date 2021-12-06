@@ -9,6 +9,7 @@ from django.http import JsonResponse
 
 from .models import Solicitud
 from usuarios.models import Usuario, Estado, Municipio, Localidad
+from estudio_socioeconomico.models import EstudioSocioeconomico
 from .forms import SolicitudForm
 
 
@@ -68,6 +69,21 @@ class DetalleSolicitud(LoginRequiredMixin, DetailView):
     model = Solicitud
     context_object_name = "solicitud"
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            estudio = EstudioSocioeconomico.objects.get(solicitud=self.object.id)
+        except EstudioSocioeconomico.DoesNotExist:
+            estudio = None
+            
+        if estudio != None:
+            context['estudio'] = True
+            context['estudio_folio'] = estudio.folio
+        else:
+            print('Holaaaaaaaaaaaaaaaaaa')
+            context['estudio']=False
+        
+        return context
     
 def obtiene_municipios(request):
     # estado = get_object_or_404(Estado, id=id_estado)
