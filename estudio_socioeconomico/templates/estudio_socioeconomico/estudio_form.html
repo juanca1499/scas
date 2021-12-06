@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block headertitle %}
     {{etiqueta}} estudio socioeconómico
 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock css %}
 
 {% block contenido %}
     {% if messages %}
@@ -18,7 +23,7 @@
 
         <section>
             <div class="container">
-                <p style="display: inline;"><b>información general</b></p>
+                <p style="display: inline;"><b>Información General</b></p>
                 <hr>
                 <p style="display: inline;">
                     <p>
@@ -30,6 +35,9 @@
                         {{form.fecha_actual.errors}}
                         {{form.fecha_actual.label_tag}}
                         {{form.fecha_actual}}
+                    </p>
+                    <p>
+                        <input type="hidden" name="solicitud" value="{{ solicitud }}" class="form-control" id="id_solicitud">
                     </p>
             </div>
         </section>
@@ -88,6 +96,11 @@
                         {{form.edad}}
                     </p>
                     <p>
+                        {{form.telefono.errors}}
+                        {{form.telefono.label_tag}}
+                        {{form.telefono}}
+                    </p>
+                    <p>
                         {{form.jefe_familia.errors}}
                         {{form.jefe_familia.label_tag}}
                         {{form.jefe_familia}}
@@ -112,6 +125,16 @@
                         {{form.discapacidad.label_tag}}
                         {{form.discapacidad}}
                     </p>
+                    <p>
+                        {{form.automovil.errors}}
+                        {{form.automovil.label_tag}}
+                        {{form.automovil}}
+                    </p>
+                    <p>
+                        {{form.tipo_combustible.errors}}
+                        {{form.tipo_combustible.label_tag}}
+                        {{form.tipo_combustible}}
+                    </p>
                 </p>
             </div>
         </section>
@@ -127,9 +150,14 @@
                         {{form.calle}}
                     </p>
                     <p>
-                        {{form.numero.errors}}
-                        {{form.numero.label_tag}}
-                        {{form.numero}}
+                        {{form.numero_exterior.errors}}
+                        {{form.numero_exterior.label_tag}}
+                        {{form.numero_exterior}}
+                    </p>
+                    <p>
+                        {{form.numero_interior.errors}}
+                        {{form.numero_interior.label_tag}}
+                        {{form.numero_interior}}
                     </p>
                     <p>
                         {{form.colonia.errors}}
@@ -142,9 +170,9 @@
                         {{form.codigo_postal}}
                     </p>
                     <p>
-                        {{form.localidad.errors}}
-                        {{form.localidad.label_tag}}
-                        {{form.localidad}}
+                        {{form.estado.errors}}
+                        {{form.estado.label_tag}}
+                        {{form.estado}}
                     </p>
                     <p>
                         {{form.municipio.errors}}
@@ -152,9 +180,9 @@
                         {{form.municipio}}
                     </p>
                     <p>
-                        {{form.estado.errors}}
-                        {{form.estado.label_tag}}
-                        {{form.estado}}
+                        {{form.localidad.errors}}
+                        {{form.localidad.label_tag}}
+                        {{form.localidad}}
                     </p>
                 </p>
             </div>
@@ -166,39 +194,41 @@
                 <hr>
                 <p style="display: inline;">
                     <p>
-                        {{form.una_planta.errors}}
-                        {{form.una_planta.label_tag}}
                         {{form.una_planta}}
+                        {{form.una_planta.errors}}
+                        <label for="id_una_planta">1 Planta </label>
                     </p>
                     <p>
-                        {{form.dos_planta.errors}}
-                        {{form.dos_planta.label_tag}}
                         {{form.dos_planta}}
+                        {{form.dos_planta.errors}}
+                        <label for="id_dos_planta">2 Plantas </label>
+                        
                     </p>
                     <p>
-                        {{form.tres_planta.errors}}
-                        {{form.tres_planta.label_tag}}
                         {{form.tres_planta}}
+                        {{form.tres_planta.errors}}
+                        <label for="id_tres_planta">3 Plantas o más </label>
+                        
                     </p>
                     <p>
-                        {{form.sala_comedor.errors}}
-                        {{form.sala_comedor.label_tag}}
                         {{form.sala_comedor}}
+                        {{form.sala_comedor.errors}}
+                        <label for="id_sala_comedor">Sala/Comedor </label>
                     </p>
                     <p>
                         {{form.cocina.errors}}
-                        {{form.cocina.label_tag}}
                         {{form.cocina}}
+                        <label for="id_cocina">Cocina </label>
                     </p>
                     <p>
                         {{form.patio.errors}}
-                        {{form.patio.label_tag}}
                         {{form.patio}}
+                        <label for="id_patio">Patio </label>
                     </p>
                     <p>
                         {{form.cochera.errors}}
-                        {{form.cochera.label_tag}}
                         {{form.cochera}}
+                        <label for="id_cochera">Cochera</label>
                     </p>
                     <p>
                         {{form.numero_recamaras.errors}}
@@ -211,8 +241,8 @@
                         {{form.numero_banios}}
                     </p>
                     <p>
+                        <label for="id_otra_caracteristica_casa">Otro (Opcional): </label>
                         {{form.otros_caracteristicas_casa.errors}}
-                        {{form.otros_caracteristicas_casa.label_tag}}
                         {{form.otros_caracteristicas_casa}}
                     </p>
                     <p>
@@ -241,73 +271,73 @@
                 <p style="display: inline;">
                     <p>
                         {{form.casa_energia.errors}}
-                        {{form.casa_energia.label_tag}}
                         {{form.casa_energia}}
+                        <label for="id_energia_electrica">Energía eléctrica</label>
                     </p>
                     <p>
                         {{form.casa_drenaje.errors}}
-                        {{form.casa_drenaje.label_tag}}
                         {{form.casa_drenaje}}
+                        <label for="id_casa_drenaje">Drenaje</label>
                     </p>
                     <p>
                         {{form.casa_potable.errors}}
-                        {{form.casa_potable.label_tag}}
                         {{form.casa_potable}}
+                        <label for="id_casa_potable">Agua potable</label>
                     </p>
                     <p>
                         {{form.casa_gas.errors}}
-                        {{form.casa_gas.label_tag}}
                         {{form.casa_gas}}
+                        <label for="id_casa_gas">Instalación de gas</label>
                     </p>
                     <p>
                         {{form.casa_lavadora.errors}}
-                        {{form.casa_lavadora.label_tag}}
                         {{form.casa_lavadora}}
+                        <label for="id_casa_lavadora">Lavadora</label>
                     </p>
                     <p>
                         {{form.casa_refrigerador.errors}}
-                        {{form.casa_refrigerador.label_tag}}
                         {{form.casa_refrigerador}}
+                        <label for="id_casa_refrigerador">Refrigerador</label>
                     </p>
                     <p>
                         {{form.casa_tv.errors}}
-                        {{form.casa_tv.label_tag}}
                         {{form.casa_tv}}
+                        <label for="id_casa_tv">T.V.</label>
                     </p>
                     <p>
                         {{form.casa_tel_fijo.errors}}
-                        {{form.casa_tel_fijo.label_tag}}
                         {{form.casa_tel_fijo}}
+                        <label for="id_casa_tel_fijo">Teléfono fijo</label>
                     </p>
                     <p>
                         {{form.casa_tel_celular.errors}}
-                        {{form.casa_tel_celular.label_tag}}
                         {{form.casa_tel_celular}}
+                        <label for="id_casa_tel_celular">Teléfono celular</label>
                     </p>
                     <p>
                         {{form.casa_microondas.errors}}
-                        {{form.casa_microondas.label_tag}}
                         {{form.casa_microondas}}
+                        <label for="id_casa_microondas">Horno de microondas</label>
                     </p>
                     <p>
                         {{form.casa_radio.errors}}
-                        {{form.casa_radio.label_tag}}
                         {{form.casa_radio}}
+                        <label for="id_casa_radio">Radio/Stéreo</label>
                     </p>
                     <p>
                         {{form.casa_dvd.errors}}
-                        {{form.casa_dvd.label_tag}}
                         {{form.casa_dvd}}
+                        <label for="id_casa_dvd">DVD</label>
                     </p>
                     <p>
                         {{form.casa_computadora.errors}}
-                        {{form.casa_computadora.label_tag}}
                         {{form.casa_computadora}}
+                        <label for="id_casa_computadora">Computadora</label>
                     </p>
                     <p>
                         {{form.casa_laptop.errors}}
-                        {{form.casa_laptop.label_tag}}
                         {{form.casa_laptop}}
+                        <label for="id_casa_laptop">Laptop</label>
                     </p>
                 </p>
             </div>
@@ -327,73 +357,73 @@
                     <hr>
                     <p>
                         {{form.enfermedad_cancer.errors}}
-                        {{form.enfermedad_cancer.label_tag}}
                         {{form.enfermedad_cancer}}
+                        <label for="id_enfermedad_cancer">Cáncer</label>
                     </p>
                     <p>
                         {{form.enfermedad_quemaduras.errors}}
-                        {{form.enfermedad_quemaduras.label_tag}}
                         {{form.enfermedad_quemaduras}}
+                        <label for="id_enfermedad_quemaduras">Quemaduras</label>
                     </p>
                     <p>
-                        {{form.enfemerdad_epilepsia.errors}}
-                        {{form.enfemerdad_epilepsia.label_tag}}
-                        {{form.enfemerdad_epilepsia}}
+                        {{form.enfermedad_epilepsia.errors}}
+                        {{form.enfermedad_epilepsia}}
+                        <label for="id_enfermedad_epilepsia">Epilepsia</label>
                     </p>
                     <p>
                         {{form.enfermedad_hipertension.errors}}
-                        {{form.enfermedad_hipertension.label_tag}}
                         {{form.enfermedad_hipertension}}
+                        <label for="id_enfermedad_hipertension">Hipertensión</label>
                     </p>
                     <p>
                         {{form.enfermedad_presion_baja.errors}}
-                        {{form.enfermedad_presion_baja.label_tag}}
                         {{form.enfermedad_presion_baja}}
+                        <label for="id_enfermedad_presion_baja">Presión baja</label>
                     </p>
                     <p>
                         {{form.enfermedad_discapacidad.errors}}
-                        {{form.enfermedad_discapacidad.label_tag}}
                         {{form.enfermedad_discapacidad}}
+                        <label for="id_enfermedad_discapacidad">Discapacidad</label>
                     </p>
                     <p>
                         {{form.enfermedad_cardiacos.errors}}
-                        {{form.enfermedad_cardiacos.label_tag}}
                         {{form.enfermedad_cardiacos}}
+                        <label for="id_enfermedad_cardiacos">Cardíacos</label>
                     </p>
                     <p>
                         {{form.enfermedad_estrabismo.errors}}
-                        {{form.enfermedad_estrabismo.label_tag}}
                         {{form.enfermedad_estrabismo}}
+                        <label for="id_enfermedad_estrabismo">Estrabismo</label>
                     </p>
                     <p>
                         {{form.enfermedad_renales.errors}}
-                        {{form.enfermedad_renales.label_tag}}
                         {{form.enfermedad_renales}}
+                        <label for="id_enfermedad_renales">Renales</label>
                     </p>
                     <p>
                         {{form.enfermedad_alergia.errors}}
-                        {{form.enfermedad_alergia.label_tag}}
                         {{form.enfermedad_alergia}}
+                        <label for="id_enfermedad_alergia">Alergias</label>
                     </p>
                     <p>
                         {{form.enfermedad_paladar_hendido.errors}}
-                        {{form.enfermedad_paladar_hendido.label_tag}}
                         {{form.enfermedad_paladar_hendido}}
+                        <label for="id_enfermedad_paladar_hendido">Paladar Hendido</label>
                     </p>
                     <p>
-                        {{form.enfermedad_cardipatias.errors}}
-                        {{form.enfermedad_cardipatias.label_tag}}
-                        {{form.enfermedad_cardipatias}}
+                        {{form.enfermedad_cardiopatias.errors}}
+                        {{form.enfermedad_cardiopatias}}
+                        <label for="id_enfermedad_cardiopatas">Cardiopatías</label>
                     </p>
                     <p>
                         {{form.enfermedad_diabetes.errors}}
-                        {{form.enfermedad_diabetes.label_tag}}
                         {{form.enfermedad_diabetes}}
+                        <label for="id_enfermedad_diabetes">Diabetes</label>
                     </p>
                     <p>
                         {{form.enfermedad_alzhaimer.errors}}
-                        {{form.enfermedad_alzhaimer.label_tag}}
                         {{form.enfermedad_alzhaimer}}
+                        <label for="id_enfermedad_alzhaimer">Alzhaimer</label>
                     </p>
                     <p>
                         {{form.enfermedad_otro.errors}}
@@ -414,3 +444,7 @@
         </div>
     </form>
 {% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/funciones.js' %}"></script>
+{% endblock js %}

@@ -8,16 +8,6 @@
             <div class="col-9">
                 Lista de estudios socioeconómicos
             </div>
-            <div class="col-md-auto">
-                <a class="btn btn-primary btn-lg" href="">
-                    <!-- Se especifica que icono se mostrara en el botón que utilizamos para agregar nuevas solicitudes -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                    Agregar estudio
-                </a>
-            </div>
         </div>
     </div>
 {% endblock %}
@@ -34,52 +24,50 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Información de las solicitudes registradas
+            Información de los estudios socioeconómicos
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
-                <!-- Se especifican los datos de la solicitud que se mostraran en la tabla -->
+                <!-- Se especifican los datos de los estudios socioeconomicos que se mostraran en la tabla -->
                 <thead>
                     <tr>
-                        <th>Fecha de solicitud</th>
+                        <th>Folio</th>
+                        <th>Fecha</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>CURP</th>
                         <th>Telefono</th>
-                        <th>Código postal</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Fecha de solicitud</th>
+                        <th>Folio</th>
+                        <th>Fecha</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>CURP</th>
-                        <th>Télefono</th>
-                        <th>Código postal</th>
+                        <th>Telefono</th>
                         <th>Opciones</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    {% for solicitud in solicitudes %}
+                    {% for estudio in estudios %}
                         <!-- Se muestran los datos de las solicitudes en la tabla--> 
                         <tr>
-                            <td>{{.fecha}}</td>
-                            <td>{{solicitud.nombre}}</td>
-                            <td>{{solicitud.primer_apellido}} 
-                                {% if solicitud.segundo_apellido != None %}
-                                    {{solicitud.segundo_apellido}}
+                            <td>{{estudio.get_folio_formateado}}</td>
+                            <td>{{estudio.fecha_actual}}</td>
+                            <td>{{estudio.solicitud.nombre}}</td>
+                            <td>{{estudio.solicitud.primer_apellido}} 
+                                {% if estudio.solicitud.segundo_apellido != None %}
+                                    {{estudio.solicitud.segundo_apellido}}
                                 {% endif %}
                             </td>
-                            <td>{{solicitud.CURP}}</td>
-                            <td>{{solicitud.telefono}}</td>
-                            <td>{{solicitud.codigo_postal}}</td>
-                            <td>{{solicitud.seccion}}</td>
-                            <td>{{persona.estatus}}</td>
+                            <td>{{estudio.solicitud.curp}}</td>
+                            <td>{{estudio.telefono}}</td>
                             <td>
                                 <!-- Se muestra el botón que sirve para ver todos los detalles de la persona desaparecida -->
-                                <a class="btn btn-success btn-sm" href="{% url 'solicitudes:detalle' solicitud.id %}">
+                                <a class="btn btn-success btn-sm" href="{% url 'estudio_socioeconomico:detalle' estudio.folio %}">
                                     <!-- Se muestra el icono correspondiente a la acción de ver los detalles de la persona desaparecida --> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
@@ -87,7 +75,7 @@
                                     </svg>
                                 </a>
                                 <!-- Se muestra el botón que sirve para editar los datos de la persona desaparecida -->
-                                <a class="btn btn-warning btn-sm" href="{% url 'solicitudes:editar' solicitud.id %}">
+                                <a class="btn btn-warning btn-sm" href="{% url 'estudio_socioeconomico:editar' estudio.folio %}">
                                     <!-- Se muestra el icono correspondiente a la acción de editar los datos de la persona desaparecida -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>

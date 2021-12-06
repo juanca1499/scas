@@ -127,10 +127,8 @@ class EstudioSocioeconomico(models.Model):
     
     
     calle = models.CharField('Calle', max_length=40)
-    numero_interior = models.PositiveIntegerField(
-        'Número interior', default=1,validators=[MinValueValidator(1)])
-    numero_exterior = models.PositiveIntegerField(
-        'Número exterior',blank=True,null=True ,validators=[MinValueValidator(1)])
+    numero_exterior = models.PositiveIntegerField("Número exterior",default=0,validators=[MinValueValidator(1)])
+    numero_interior = models.PositiveIntegerField("Número interior", null = True, blank = True,validators=[MinValueValidator(1)])
     colonia = models.CharField("Colonia",max_length=35)
     codigo_postal = models.CharField(
         'Código Postal', max_length=5, validators=[MinLengthValidator(5), 
