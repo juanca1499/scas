@@ -124,7 +124,7 @@ class TestForms(TestCase):
         self.usuario['codigo_postal'] = '9934e'
         form = FormUsuario(self.usuario,files=self.archivos)
         self.assertFalse(form.is_valid())
-        
+                
     def test_correo_longitud_excedida(self):
         self.usuario['email'] = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@gmail.com'
         form = FormUsuario(self.usuario,files=self.archivos)
@@ -155,6 +155,11 @@ class TestForms(TestCase):
         form = FormUsuario(self.usuario,files=self.archivos)
         self.assertFalse(form.is_valid())
         
+    def test_ine_requerido(self):
+        self.archivos['ine'] = ''
+        form = FormUsuario(self.usuario,files=self.archivos)
+        self.assertFalse(form.is_valid())
+   
     def test_ine_longitud_excedida(self):
         self.archivos['ine'] = 'media/testfiles/ineeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.png'
         form = FormUsuario(self.usuario,files=self.archivos)
@@ -169,6 +174,11 @@ class TestForms(TestCase):
         self.usuario['username'] = 'jucaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
         form = FormUsuario(self.usuario,files=self.archivos)
         self.assertFalse(form.is_valid())
+     
+    def test_contra_requerido(self):
+        self.usuario['password'] = ''
+        form = FormUsuario(self.usuario,files=self.archivos)
+        self.assertFalse(form.is_valid())   
          
     def test_contra_longitud_excedida(self):
         self.usuario['password'] = 'jucaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'

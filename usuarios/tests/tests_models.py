@@ -222,30 +222,6 @@ class TestModels(TestCase):
                 password = 'juca123'
             )
             
-    def test_correo_requerido(self):
-        estado = self.crear_estado()
-        municipio = self.crear_municipio()
-        localidad = self.crear_localidad()
-
-        with self.assertRaises(IntegrityError):
-            Usuario.objects.create_user(
-                first_name = 'Juan Carlos',
-                last_name = 'García',
-                segundo_apellido = 'Murillo',
-                calle = 'Rafael Acuña',
-                numero = 9,
-                colonia = 'Artesanos',
-                codigo_postal = 99343,
-                estado = estado,
-                municipio = municipio,
-                localidad = localidad,
-                email = None,
-                telefono = '4949428829',
-                ine = 'ine.png',
-                username = 'juca',
-                password = 'juca123'
-            )
-            
     def test_telefono_requerido(self):
         estado = self.crear_estado()
         municipio = self.crear_municipio()
@@ -269,31 +245,7 @@ class TestModels(TestCase):
                 username = 'juca',
                 password = 'juca123'
             )
-            
-    def test_ine_requerido(self):
-        estado = self.crear_estado()
-        municipio = self.crear_municipio()
-        localidad = self.crear_localidad()
-
-        with self.assertRaises(IntegrityError):
-            Usuario.objects.create_user(
-                first_name = 'Juan Carlos',
-                last_name = 'García',
-                segundo_apellido = 'Murillo',
-                calle = 'Rafael Acuña',
-                numero = 9,
-                colonia = 'Artesanos',
-                codigo_postal = 99343,
-                estado = estado,
-                municipio = municipio,
-                localidad = localidad,
-                email = 'garciamjuancarlos14@gmail.com',
-                telefono = '4949428829',
-                ine = None,
-                username = 'juca',
-                password = 'juca123'
-            )
-            
+                    
     def test_dado_baja_requerido(self):
         estado = self.crear_estado()
         municipio = self.crear_municipio()
@@ -342,31 +294,7 @@ class TestModels(TestCase):
                 username = None,
                 password = 'juca123'
             )
-            
-    def test_contra_requerida(self):
-        estado = self.crear_estado()
-        municipio = self.crear_municipio()
-        localidad = self.crear_localidad()
-
-        with self.assertRaises(IntegrityError):
-            Usuario.objects.create_user(
-                first_name = 'Juan Carlos',
-                last_name = 'García',
-                segundo_apellido = 'Murillo',
-                calle = 'Rafael Acuña',
-                numero = 9,
-                colonia = 'Artesanos',
-                codigo_postal = 99343,
-                estado = estado,
-                municipio = municipio,
-                localidad = localidad,
-                email = 'garciamjuancarlos14@gmail.com',
-                telefono = '4949428829',
-                ine = 'ine.png',
-                username = 'juca',
-                password = None
-            )
-            
+                    
     def test_crear_usuario(self):
         estado = self.crear_estado()
         municipio = self.crear_municipio()
