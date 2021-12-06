@@ -78,12 +78,6 @@ class TestViews(TestCase):
         response = self.client.get(reverse('estudio_socioeconomico:detalle',args=[-34]))
         self.assertEqual(response.status_code, 404) 
         
-    def test_datos_en_lista_estudio(self):
-        usuario = self.user_login()
-        solicitud = self.agrega_solicitud(usuario)
-        estudio = self.agrega_estudio(solicitud)
-        response = self.client.get('/estudio-socioeconomico/')
-        self.assertIn(estudio.folio, response.context)
         
     def test_folio_en_lista_estudio(self):
         usuario = self.user_login()
@@ -112,6 +106,14 @@ class TestViews(TestCase):
         estudio = self.agrega_estudio(solicitud)
         response = self.client.get(reverse('estudio_socioeconomico:lista'))
         self.assertContains(response,estudio.solicitud.segundo_apellido)
+
+    def test_form_estudio_valido(self):
+        usuario = self.user_login()
+        solicitud = self.agrega_solicitud(usuario)
+        estudio = self.agrega_estudio(solicitud)
+        response = self.client.get(reverse('estudio_socioeconomico:lista'))
+        self.assertContains(response,'Estudio socioeconómico guardado exitosamente.')
+    
             
     def agrega_escolaridad(self):
         return Escolaridad.objects.create(escolaridad ='Ninguna')
@@ -151,16 +153,15 @@ class TestViews(TestCase):
             nombre='Guadalupe',
             estado=self.agrega_estado(),
             )
-    
-    def agrega_estatus(self):
-        return EstatusSolicitud.objects.create(estatus='En Tramite')
-    
+       
     def agrega_localidad(self):
         return Localidad.objects.create(
             nombre='Tacoaleche',
             municipio=self.agrega_municipio(),
             )
         
+    def agrega_estatus(self):
+        return EstatusSolicitud.objects.create(estatus='En Tramite')
         
     def agrega_estudio(self,solicitud):
         return EstudioSocioeconomico.objects.create(
