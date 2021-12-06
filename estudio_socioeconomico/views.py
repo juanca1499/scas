@@ -48,7 +48,7 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
         form.instance.solicitud = self.solicitud
         self.estudio_socioeconomico = form.save(commit=False)
         self.estudio_socioeconomico.save()
-        messages.success(self.request, 'Solicitud guardada exitosamente.')
+        messages.success(self.request, 'Estudio socioeconómico guardado exitosamente.')
         return super().form_valid(form)
     
     def form_invalid(self, form):

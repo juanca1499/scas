@@ -1,49 +1,102 @@
 Característica: Como administrador me gustaría agregar 
-                un estudio socioeconómico a una solicitud para valorar 
-                si se dará el apoyo al solicitante.
+                un estudio socioeconómico a una solicitud 
+                para valorar si se dará el apoyo al solicitante
+                Como encuestador me gustaría agregar 
+                un estudio socioeconómico a una solicitud 
+                para valorar si se dará el apoyo al solicitante.
 
     Escenario: Datos de estudio socioeconómico correctos.
-    Dado que me encuentro logueado en el sistema
-    Y accedo a la url "http://192.168.33.10:8000/estudio-socieconomico/nuevo"
-    # Y selecciono el botón "Solicitudes"
-    # Y selecciono una solicitud
-    # Y selecciono agregar estudio socioeconómico
-    Y capturo la fecha de hoy
-    Y subo un archivo como comprobante de domicilio
-    Y subo un archivo como la credencial de elector
-    Y elijo en ocupación "Estudiante"
-    Y elijo en escolaridad "Preparatoria"
-    Y elijo en estado civil "Soltero (a)"
-    Y elijo en discapacidad "Ninguna"
-    Y capturo la calle "Real de angeles"
-    Y capturo en el numero exterior "43"
-    Y capturo la colonia "Camino Real"
-    Y capturo el código postal "98613"
-    Y capturo en es cabeza de familia "si"
-    Y capturo en estado civil "soltero"
-    Y capturo en sufre de discapacidad "ninguna"
-    Y capturo en su casa es "propia, pagada y escriturada"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "Energía eléctrica"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "Drenaje"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "Agua potable"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "instalación gas"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "Tel celular"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "Horno de micro"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "computadora"
-    Y capturo en ¿cuenta con los siguientes servicios de equipamiento? "laptop"
-    Y capturo en características de la casa "2 plantas"
-    Y capturo en características de la casa  "sala/comedor"
-    Y capturo en características de la casa "cocina"
-    Y capturo en características de la casa "3 recámaras"
-    Y capturo en características de la casa "1 baño"
-    Y capturo en características de la casa "patio"
-    Y capturo en características de la casa "cochera"
-    Y capturo en el piso es "cemento"
-    Y capturo en el techo es "ladrillo"
-    Y capturo en automóvil "propio"
-    Y capturo en tipo de combustible "gas" 
-    Y capturo en ocupación "estudiante"
-    Y capturo en cuenta con servicio de "IMSS"
-    Y capturo en que enfermedades existen la familia "Alergias"
-    Cuando presiono el botón "Registrar"
-    Entonces el sistema me muestra el mensaje "El registro se realizó correctamente."
+        Dado que accedo al login
+        Y capturo usuario "juca" y contraseña "juca123"
+        Y presiono ingresar
+        Y me dirijo a solicitudes
+        Y selecciono visualizar solicitud "1"
+        Y selecciono agregar estudio socioeconomico
+        Y capturo en la fecha actual "17-11-2021"
+        Y subo un archivo como comprobante de domicilio "C:/Users/secre/Desktop/Pruebas/comprobante.jpg"
+        Y subo un archivo como la credencial de elector "C:/Users/secre/Desktop/Pruebas/ine.jpg"
+        Y capturo la edad "18"
+        Y capturo el telefono "4921736547"
+        Y activo la casilla en es cabeza de familia
+        Y elijo en ocupación "Estudiante"
+        Y elijo en escolaridad "Preparatoria"
+        Y elijo en estado civil "Soltero (a)"
+        Y elijo en discapacidad "Ninguna"
+        Y elijo en automovil "Propio"
+        Y elijo en tipo de combustible "Gasolina"
+        Y capturo calle "Real de angeles"
+        Y capturo en el numero exterior "43"
+        Y capturo colonia "Camino Real"
+        Y capturo código postal "98613"
+        Y elijo en estado "Zacatecas"
+        Y elijo en municipio "Guadalupe"
+        Y elijo en localidad "Tacoaleche"
+        Y activo la casilla en 3 plantas
+        Y activo la casilla en sala/comedor
+        Y activo la casilla en cocina 
+        Y activo la casilla en cochera
+        Y capturo el numero de recamaras "2"
+        Y capturo el numero de baños "2"
+        Y elijo en el piso es "Tierra"
+        Y elijo en el techo es "Concreto"
+        Y elijo en su casa es "Propia, pagada y escriturada"
+        Y activo la casilla en energia electrica
+        Y activo la casilla en drenaje
+        Y activo la casilla en agua potable
+        Y activo la casilla en lavadora
+        Y activo la casilla en radio
+        Y activo la casilla en dvd
+        Y elijo en servio de salud "IMSS"
+        Y activo la casilla en cancer
+        Y activo la casilla en epilepsia
+        Y activo la casilla en presion baja
+        Cuando presiono botón "Agregar"
+        Entonces el sistema me muestra "Estudio socioeconómico guardado exitosamente."
+
+    Escenario: Datos de estudio socioeconómico incorrectos.
+        Dado que accedo al login
+        Y capturo usuario "juca" y contraseña "juca123"
+        Y presiono ingresar
+        Y me dirijo a solicitudes
+        Y selecciono visualizar solicitud "2"
+        Y selecciono agregar estudio socioeconomico 
+        Y capturo en la fecha actual "17-11-2021"
+        Y subo un archivo como comprobante de domicilio "C:/Users/secre/Desktop/Pruebas/error_1.docx"
+        Y subo un archivo como la credencial de elector "C:/Users/secre/Desktop/Pruebas/error_2.docx"
+        Y capturo la edad "18"
+        Y capturo el telefono "4921736547"
+        Y activo la casilla en es cabeza de familia
+        Y elijo en ocupación "Estudiante"
+        Y elijo en escolaridad "Preparatoria"
+        Y elijo en estado civil "Soltero (a)"
+        Y elijo en discapacidad "Ninguna"
+        Y elijo en automovil "Propio"
+        Y elijo en tipo de combustible "Gasolina"
+        Y capturo calle "Real de angeles"
+        Y capturo en el numero exterior "43"
+        Y capturo colonia "Camino Real"
+        Y capturo código postal "98613"
+        Y elijo en estado "Zacatecas"
+        Y elijo en municipio "Guadalupe"
+        Y elijo en localidad "Tacoaleche"
+        Y activo la casilla en 3 plantas
+        Y activo la casilla en sala/comedor
+        Y activo la casilla en cocina 
+        Y activo la casilla en cochera
+        Y capturo el numero de recamaras "1"
+        Y capturo el numero de baños "2"
+        Y elijo en el piso es "Tierra"
+        Y elijo en el techo es "Concreto"
+        Y elijo en su casa es "Propia, pagada y escriturada"
+        Y activo la casilla en energia electrica
+        Y activo la casilla en drenaje
+        Y activo la casilla en agua potable
+        Y activo la casilla en lavadora
+        Y activo la casilla en radio
+        Y activo la casilla en dvd
+        Y elijo en servio de salud "IMSS"
+        Y activo la casilla en cancer
+        Y activo la casilla en epilepsia
+        Y activo la casilla en presion baja
+        Cuando presiono botón "Agregar"
+        Entonces el sistema me muestra "Hay datos inválidos en el formulario."

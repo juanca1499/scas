@@ -110,7 +110,7 @@ class ServicioSalud(models.Model):
     class Meta:
         verbose_name = 'Servicio de salud'
         verbose_name_plural = 'Servicios de salud'
-    
+
 class EstudioSocioeconomico(models.Model):
     folio = models.AutoField("Folio", primary_key=True)
     fecha_actual = models.DateField("Fecha")
@@ -118,16 +118,10 @@ class EstudioSocioeconomico(models.Model):
     comprobante_domicilio = models.FileField("Comprobante de domicilio", upload_to='estudio/comprobante/', validators=[validador_archivo])
     solicitud = models.ForeignKey("solicitudes.Solicitud", verbose_name="Solicitud", on_delete=models.CASCADE)
         
-    @property
-    def calcular_edad(solicitud):
-        if solicitud.fecha_nacimiento:
-            hoy = date.today()
-            return hoy.year - solicitud.fecha_nacimiento.year - ((hoy.month, hoy.day) < (solicitud.fecha_nacimiento.month, solicitud.fecha_nacimiento.day))
-        return 0  # cuando la fecha de nacimiento es 0
-    
+    edad = models.IntegerField("Edad", blank=True)
     
     calle = models.CharField('Calle', max_length=40)
-    numero_exterior = models.PositiveIntegerField("Número exterior",default=0,validators=[MinValueValidator(1)])
+    numero_exterior = models.PositiveIntegerField("Número exterior",blank=True,validators=[MinValueValidator(1)])
     numero_interior = models.PositiveIntegerField("Número interior", null = True, blank = True,validators=[MinValueValidator(1)])
     colonia = models.CharField("Colonia",max_length=35)
     codigo_postal = models.CharField(
