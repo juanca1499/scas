@@ -7,6 +7,8 @@ from django.contrib.auth.views import LogoutView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView,UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Usuario
 from .forms import FormUsuario
@@ -49,11 +51,10 @@ class UsuarioNuevo(CreateView):
     
     def form_invalid(self, form):
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
-        print(form.data)
-        print()
-        print(form.errors)
         return super(UsuarioNuevo, self).form_invalid(form)
     
+@login_required
+@permission_required('usuarios.delete_usuario', raise_exception=True)
 def baja_usuario(request, pk):
     if request.method == "POST":
         usuario = get_object_or_404(Usuario, id=pk)
