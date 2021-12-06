@@ -5,13 +5,13 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, DeleteView,UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Usuario
-from .forms import FormUsuario
+from .forms import FormUsuario, FormUsuarioEditar
 
 
 # Función correspondiente al login de los usuarios.
@@ -62,3 +62,19 @@ def baja_usuario(request, pk):
         usuario.save()
         messages.success(request, '¡Cuenta dada de baja con éxito!')
     return redirect('usuarios:lista')
+
+class UsuarioEditar(UpdateView):
+    model = Usuario
+    form_class = FormUsuarioEditar
+    template_name = 'usuarios/usuario_form_editar.html'
+    extra_context = {'etiqueta': 'Editar', 'boton': 'Guardar'}
+    success_url = reverse_lazy('usuarios:lista')
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Hay datos inválidos en el formulario.')
+        return super(UsuarioEditar, self).form_invalid(form)
+    
+    def form_valid(self, form):
+        messages.success(self.request, '¡Registro actualizado con éxito!')
+        return super(UsuarioEditar, self).form_valid(form)
+    
