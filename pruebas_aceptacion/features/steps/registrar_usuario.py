@@ -1,6 +1,7 @@
 from behave import given, when, then
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 import time
 
 
@@ -53,18 +54,21 @@ def step_impl(context, codigo_postal):
 def step_impl(context, estado):
     select = Select(context.driver.find_element_by_id('id_estado'))
     select.select_by_visible_text(estado)
+    time.sleep(3)
 
 
 @given(u'elijo el municipio "{municipio}"')
 def step_impl(context, municipio):
     select = Select(context.driver.find_element_by_id('id_municipio'))
     select.select_by_visible_text(municipio)
+    time.sleep(2)
 
 
 @given(u'elijo la localidad "{localidad}"')
 def step_impl(context, localidad):
     select = Select(context.driver.find_element_by_id('id_localidad'))
     select.select_by_visible_text(localidad)
+    time.sleep(2)
 
 
 @given(u'capturo el correo "{correo}"')
@@ -90,12 +94,12 @@ def step_impl(context, usuario):
 @given(u'capturar la contraseña "{contra}"')
 def step_impl(context, contra):
     context.driver.find_element_by_id('id_password').send_keys(contra)
-    time.sleep(3)
+    time.sleep(2)
 
 
 @when(u'presiono el botón "{boton}"')
 def step_impl(context, boton):
-    context.driver.find_element_by_id('submit').click()
+    context.driver.find_element_by_id('submit').send_keys(Keys.ENTER)
 
 
 @then(u'puedo ver al usuario "{usuario}" en la lista de usuarios.')

@@ -1,5 +1,6 @@
 from behave import given, when, then
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
+
 import time
 
 
@@ -27,8 +28,7 @@ def step_impl(context, codigo):
 
 @when(u'presiono el botón guardar')
 def step_impl(context):
-    time.sleep(5)
-    context.driver.find_element_by_id('submit').click()
+    context.driver.find_element_by_id('submit').send_keys(Keys.ENTER)
 
 
 @then(u'el sistema me mostrará el mensaje: "{mensaje}"')
