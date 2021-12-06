@@ -106,14 +106,6 @@ class TestViews(TestCase):
         estudio = self.agrega_estudio(solicitud)
         response = self.client.get(reverse('estudio_socioeconomico:lista'))
         self.assertContains(response,estudio.solicitud.segundo_apellido)
-
-    def test_form_estudio_valido(self):
-        usuario = self.user_login()
-        solicitud = self.agrega_solicitud(usuario)
-        estudio = self.agrega_estudio(solicitud)
-        response = self.client.get(reverse('estudio_socioeconomico:lista'))
-        self.assertContains(response,'Estudio socioeconómico guardado exitosamente.')
-    
             
     def agrega_escolaridad(self):
         return Escolaridad.objects.create(escolaridad ='Ninguna')
