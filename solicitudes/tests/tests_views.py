@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User
 from usuarios.models import Estado, Municipio, Localidad, Usuario
+from estudio_socioeconomico.models import *
 from solicitudes.models import Solicitud, EstatusSolicitud
 from solicitudes.views import ListaSolicitud, EditarSolicitud, NuevaSolicitud, DetalleSolicitud, obtiene_municipios, obtiene_localidades
 
@@ -77,6 +78,70 @@ class TestViews(TestCase):
         invalid = form_solicitud.is_valid()
         self.assertEqual(False, invalid)
         
+    def test_detalle_muestra_boton_agregar_estudio(self):
+        usuario = self.user_login()
+        solicitud = self.agrega_solicitud(usuario)
+        estudio = self.agrega_estudio(solicitud)
+        response = self.client.get('/solicitudes/detalle/'+str(solicitud.id))
+        estudio = response.context['estudio']
+        self.assertEqual(True, estudio)
+        
+    def test_carga_municipios(self):
+        estado = Estado.objects.create(
+            nombre='Zacatecas',
+            )
+        municipio = Municipio.objects.create(
+            nombre='Jerez',
+            estado=estado,
+            )
+        items = {'id': estado.id}
+        
+        response = self.client.post('/solicitudes/municipios/',items)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_carga_localidades(self):
+        estado = Estado.objects.create(
+            nombre='Zacatecas',
+            )
+        municipio = Municipio.objects.create(
+            nombre='Jerez',
+            estado=estado,
+            )
+        localidad = Localidad.objects.create(
+            nombre='Ciénega',
+            municipio=municipio,
+            )
+        itemsEstado = {'id': estado.id}
+        items = {'id': municipio.id}
+        
+        self.client.post('/solicitudes/municipios/',itemsEstado)
+        response = self.client.post('/solicitudes/localidades/',items)
+        self.assertEqual(response.status_code, 200) 
+    
+    def test_carga_municipios_error(self):
+        estado = Estado.objects.create(
+            nombre='Zacatecas',
+            )
+        items = {'id': estado.id}
+        
+        response = self.client.post('/solicitudes/municipios/',items)
+        self.assertEqual(response.status_code, 200)
+        
+    def test_carga_localidades_error(self):
+        estado = Estado.objects.create(
+            nombre='Zacatecas',
+            )
+        municipio = Municipio.objects.create(
+            nombre='Jerez',
+            estado=estado,
+            )
+        itemsEstado = {'id': estado.id}
+        items = {'id': municipio.id}
+        
+        self.client.post('/solicitudes/municipios/',itemsEstado)
+        response = self.client.post('/solicitudes/localidades/',items)
+        self.assertEqual(response.status_code, 200) 
+        
     def test_context_lista_solicitudes(self):
         self.user_login()
         response = self.client.get('/solicitudes/')
@@ -92,12 +157,12 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'solicitudes/solicitud_list.html')
         
     def test_nombre_url_lista_solicitudes(self):
-        self.user_login()
+        self.user_login_admin()
         response = self.client.get(reverse('solicitudes:lista'))
         self.assertEqual(response.status_code, 200)
     
     def test_url_nueva_solicitud(self):
-        self.user_login_admin()
+        self.user_login()
         response = self.client.get('/solicitudes/nueva')
         self.assertEqual(response.status_code, 200)
 
@@ -208,18 +273,6 @@ class TestViews(TestCase):
         self.assertEquals('MADC990909HZSZRS08',
                           response.context['solicitud'].curp)
         
-    def test_agregar_solicitud_sin_loguearse(self):
-        response = self.client.post('/solicitudes/nueva')
-        self.assertEqual(response.status_code, 302)
-        
-    def test_editar_solicitud_sin_loguearse(self):
-        response = self.client.post('/solicitudes/editar/1')
-        self.assertEqual(response.status_code, 302)
-        
-    def test_ver_detalles_solicitud_sin_loguearse(self):
-        response = self.client.post('/solicitudes/detalle/1')
-        self.assertEqual(response.status_code, 302)
-        
     def test_url_solicitudes_cargar_municipios_error(self):
         response = self.client.get('/solicitudes/municipios/')
         self.assertEqual(response.status_code, 403)
@@ -308,3 +361,73 @@ class TestViews(TestCase):
             username='admin', password='admin123', is_superuser=1)
         self.client.login(username='admin', password='admin123')
         return usuario
+
+
+    
+    def agrega_escolaridad(self):
+        return Escolaridad.objects.create(escolaridad ='Ninguna')
+
+    def agrega_estado_civil(self):
+        return EstadoCivil.objects.create(estado_civil ='Soltero (a)')
+    
+    def agrega_discapacidad(self):
+        return Discapacidad.objects.create(discapacidad ='Ninguna')
+    
+    def agrega_piso(self):
+        return Piso.objects.create(piso='Concreto')
+    
+    def agrega_techo(self):
+        return Techo.objects.create(techo='Lamina')
+    
+    def agrega_automovil(self):
+        return Automovil.objects.create(automovil='Prestado')
+    
+    def agrega_tipo_combustible(self):
+        return TipoCombustible.objects.create(tipo_combustible='Gasolina')
+    
+    def agrega_ocupacion(self):
+        return Ocupacion.objects.create(ocupacion='Profesionista')
+    
+    def agrega_casa(self):
+        return CasaEs.objects.create(casa_es='Propia, pagada y escriturada')
+    
+    def agrega_servicio_salud(self):
+        return ServicioSalud.objects.create(servicio='INSABI')
+        
+    def agrega_estudio(self,solicitud):
+        return EstudioSocioeconomico.objects.create(
+            fecha_actual = '2021-11-17',
+            credencial = 'ine.png',
+            comprobante_domicilio = 'comprobante.png',
+            escolaridad = self.agrega_escolaridad(),
+            solicitud = solicitud,
+            edad = 20,
+            calle = 'Adelitas revolucionarias',
+            numero_exterior = 9,
+            colonia = 'Adelitas',
+            codigo_postal = 98613,
+            estado = self.agrega_estado(),
+            municipio = self.agrega_municipio(),
+            localidad = self.agrega_localidad(),
+            telefono = '4921736547',
+            cabeza_familia = True,
+            estado_civil = self.agrega_estado_civil(),
+            discapacidad = self.agrega_discapacidad(),
+            tres_planta = True,
+            sala_comedor = True ,
+            cocina = True,
+            numero_recamaras = 1,
+            numero_banios = 2,
+            piso_es = self.agrega_piso(),
+            techo_es = self.agrega_techo(),
+            automovil = self.agrega_automovil(),
+            tipo_combustible = self.agrega_tipo_combustible(),
+            casa_es = self.agrega_casa(),
+            casa_energia = True,
+            casa_drenaje = True,
+            ocupacion = self.agrega_ocupacion(),
+            servicio_salud = self.agrega_servicio_salud(),
+            enfermedad_cancer = True,
+            enfermedad_quemaduras = True,
+            enfermedad_epilepsia = True
+        )
