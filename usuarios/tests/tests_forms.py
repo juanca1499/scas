@@ -68,6 +68,8 @@ class TestForms(TestCase):
         
     def test_usuario_form_valido(self):
         form = FormUsuario(self.usuario,files=self.archivos)
+        form.save()
+        Usuario.objects.get(username=self.usuario['username'])
         self.assertTrue(form.is_valid())
         
     def test_nombre_longitud_excedida(self):
