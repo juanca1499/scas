@@ -12,7 +12,7 @@
 {% block contenido %}
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}succes{%endif%} alert-dismissible fade show" role="alert">
+            <div class="alert alert-{% if message.tags == 'error' %}danger{%else%}success{%endif%} alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

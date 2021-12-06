@@ -78,3 +78,7 @@ class UsuarioEditar(UpdateView):
         messages.success(self.request, '¡Registro actualizado con éxito!')
         return super(UsuarioEditar, self).form_valid(form)
     
+class UsuarioDetalle(DetailView):
+    model = Usuario
+    context_object_name = 'usuario'
+    
