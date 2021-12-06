@@ -118,7 +118,7 @@ class EstudioSocioeconomico(models.Model):
     comprobante_domicilio = models.FileField("Comprobante de domicilio", upload_to='estudio/comprobante/', validators=[validador_archivo])
     solicitud = models.ForeignKey("solicitudes.Solicitud", verbose_name="Solicitud", on_delete=models.CASCADE)
         
-    edad = models.IntegerField("Edad", blank=True)
+    edad = models.PositiveIntegerField("Edad",blank=True,validators=[MinValueValidator(1)])
     
     calle = models.CharField('Calle', max_length=40)
     numero_exterior = models.PositiveIntegerField("Número exterior",blank=True,validators=[MinValueValidator(1)])
@@ -147,8 +147,8 @@ class EstudioSocioeconomico(models.Model):
     cocina = models.BooleanField("Cocina", default=False)
     patio = models.BooleanField("Patio", default=False)
     cochera = models.BooleanField("Cochera", default=False)
-    numero_recamaras = models.IntegerField("Número de recamaras")    
-    numero_banios = models.IntegerField("Número de baños")    
+    numero_recamaras =models.PositiveIntegerField("Número de recamaras",validators=[MinValueValidator(0)])   
+    numero_banios = models.PositiveIntegerField("Número de baños",validators=[MinValueValidator(0)])  
     otros_caracteristicas_casa = models.CharField("Otro", max_length=60,blank=True, null=True)
     
     piso_es =  models.ForeignKey(Piso, verbose_name="El piso es", on_delete=models.CASCADE)

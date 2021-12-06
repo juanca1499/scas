@@ -239,3 +239,20 @@ class TestViews(TestCase):
             resumen='Solicitud 1',
             usuario=usuario
         )
+        
+    def agrega_usuario(self):
+        usuario = Usuario.objects.create_user(
+            username='josue_3', 
+            password='josue123',
+            calle='Real de Angeles',
+            numero=43,
+            colonia='Camino Real',
+            codigo_postal='98613',
+            estado=self.agrega_estado(),
+            municipio=self.agrega_municipio(),
+            localidad=self.agrega_localidad(),
+            telefono='492736547',
+            ine="imagen.png",
+            dado_baja=0
+        )
+        return usuario
