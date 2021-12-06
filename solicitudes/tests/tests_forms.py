@@ -35,6 +35,11 @@ class TestForms(TestCase):
         form = SolicitudForm(self.solicitud)
         self.assertTrue(form.is_valid())
         
+    def test_solicitud_form_invalido(self):
+        self.solicitud['fecha'] = 'a'
+        form = SolicitudForm(self.solicitud)
+        self.assertFalse(form.is_valid())
+        
     def test_solicitud_form_usuario_vacio(self):
         self.solicitud['usuario'] = None
         form = SolicitudForm(self.solicitud)

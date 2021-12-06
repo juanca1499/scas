@@ -35,11 +35,11 @@ class ListaSolicitud(LoginRequiredMixin,ListView):
 class NuevaSolicitud(LoginRequiredMixin, CreateView):
     model = Solicitud
     form_class = SolicitudForm
-    extra_context = {'etiqueta': 'Nueva', 'boton': 'Agregar'}
+    extra_context = {'etiqueta': 'Nueva', 'boton': 'Registrar'}
     success_url = reverse_lazy('solicitudes:lista')
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Hay datos inválidos en el formulario.')
+        messages.error(self.request, 'Hay datos inválidos en el formulario')
         return super(NuevaSolicitud, self).form_invalid(form)
     
     def form_valid(self, form):
@@ -47,7 +47,7 @@ class NuevaSolicitud(LoginRequiredMixin, CreateView):
         usuario = get_object_or_404(Usuario,username=self.request.user.username)
         self.solicitud.usuario = usuario
         self.solicitud.save()
-        messages.success(self.request, 'Solicitud guardada exitosamente.')
+        messages.success(self.request, 'Solicitud guardada exitosamente')
         return super(NuevaSolicitud, self).form_valid(form)
     
     
@@ -80,7 +80,6 @@ class DetalleSolicitud(LoginRequiredMixin, DetailView):
             context['estudio'] = True
             context['estudio_folio'] = estudio.folio
         else:
-            print('Holaaaaaaaaaaaaaaaaaa')
             context['estudio']=False
         
         return context
