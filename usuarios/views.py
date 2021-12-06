@@ -7,7 +7,7 @@ from django.contrib.auth.views import LogoutView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Usuario
@@ -36,14 +36,16 @@ def login(request):
 
 
 # Clase correspondiente al logout de los usuarios.
-class UsuarioLogout(LogoutView):
+class UsuarioLogout(LoginRequiredMixin, LogoutView):
     template_name='login.html'
     
-class UsuarioLista(ListView):
+class UsuarioLista(PermissionRequiredMixin, ListView):
+    permission_required = 'usuarios.view_usuario'
     model = Usuario
     context_object_name = 'usuarios'
     
-class UsuarioNuevo(CreateView):
+class UsuarioNuevo(PermissionRequiredMixin, CreateView):
+    permission_required = 'usuarios.add_usuario'
     model = Usuario
     extra_context = {'etiqueta': 'Nuevo', 'boton': 'Agregar'}
     form_class = FormUsuario
@@ -63,7 +65,8 @@ def baja_usuario(request, pk):
         messages.success(request, '¡Cuenta dada de baja con éxito!')
     return redirect('usuarios:lista')
 
-class UsuarioEditar(UpdateView):
+class UsuarioEditar(PermissionRequiredMixin, UpdateView):
+    permission_required = 'usuarios.change_usuario'
     model = Usuario
     form_class = FormUsuarioEditar
     template_name = 'usuarios/usuario_form_editar.html'
@@ -78,7 +81,7 @@ class UsuarioEditar(UpdateView):
         messages.success(self.request, '¡Registro actualizado con éxito!')
         return super(UsuarioEditar, self).form_valid(form)
     
-class UsuarioDetalle(DetailView):
+class UsuarioDetalle(PermissionRequiredMixin, DetailView):
+    permission_required = 'usuarios.view_usuario'
     model = Usuario
     context_object_name = 'usuario'
-    

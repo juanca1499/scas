@@ -15,15 +15,57 @@ class TestViews(TestCase):
         self.crear_usuario_administrador()
         logueado = self.client.login(username='jucaadmin', password='123')
         self.assertFalse(logueado)
-      
-    def test_desactivar_usuario_sin_loguearse(self):
+          
+    def test_registrar_usuario_sin_loguearse(self):
+        response = self.client.post('/usuarios/nuevo')
+        self.assertEqual(response.status_code, 302)
+        
+    def test_registrar_usuario_sin_permiso(self):
+        self.iniciar_sesion_usuario_normal()
+        response = self.client.post('/usuarios/nuevo')
+        self.assertEqual(response.status_code, 403)
+    
+    def test_dar_de_baja_usuario_sin_loguearse(self):
         response = self.client.post('/usuarios/baja/1')
         self.assertEqual(response.status_code, 302)
         
-    def test_desactivar_usuario_sin_ser_administrador(self):
+    def test_dar_de_baja_usuario_sin_permiso(self):
         self.iniciar_sesion_usuario_normal()
         response = self.client.post('/usuarios/baja/1')
         self.assertEqual(response.status_code, 403)
+        
+    def test_editar_usuario_sin_loguearse(self):
+        self.crear_usuario_normal()
+        response = self.client.post('/usuarios/editar/1')
+        self.assertEqual(response.status_code, 302)
+        
+    def test_editar_usuario_sin_permiso(self):
+        self.iniciar_sesion_usuario_normal()
+        response = self.client.post('/usuarios/editar/1')
+        self.assertEqual(response.status_code, 403)
+        
+    def test_consultar_usuario_sin_loguearse(self):
+        self.crear_usuario_normal()
+        response = self.client.get('/usuarios/detalle/1')
+        self.assertEqual(response.status_code, 302)
+        
+    def test_consultar_usuario_sin_permiso(self):
+        self.iniciar_sesion_usuario_normal()
+        response = self.client.get('/usuarios/detalle/1')
+        self.assertEqual(response.status_code, 403)
+        
+    def test_consultar_lista_usuarios_sin_loguearse(self):
+        response = self.client.get('/usuarios/')
+        self.assertEqual(response.status_code, 302)
+        
+    def test_consultar_lista_usuarios_sin_permiso(self):
+        self.iniciar_sesion_usuario_normal()
+        response = self.client.get('/usuarios/')
+        self.assertEqual(response.status_code, 403)
+        
+    def test_logout_sin_sesion_iniciada(self):
+        response = self.client.get('/logout/')
+        self.assertEqual(response.status_code, 302)
         
     def crear_usuario_normal(self):
         estado = self.crear_estado()
