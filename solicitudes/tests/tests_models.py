@@ -107,7 +107,8 @@ class TestModels(TestCase):
 
     def test_editar_solicitud(self):
         test_view = TestViews()
-        solicitud = test_view.agrega_solicitud()
+        usuario = self.agregar_usuario()
+        solicitud = test_view.agrega_solicitud(usuario)
 
         solicitud_editada = Solicitud.objects.first()
 
@@ -530,7 +531,8 @@ class TestModels(TestCase):
             
     def test_excede_longitud_nombre(self):
         test_view = TestViews()
-        solicitud = test_view.agrega_solicitud()
+        usuario = self.agregar_usuario()
+        solicitud = test_view.agrega_solicitud(usuario)
 
         solicitud.nombre = 'Cesarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr'
         with self.assertRaises(ValidationError):
@@ -538,7 +540,8 @@ class TestModels(TestCase):
             
     def test_segundo_apellido_null(self):
         test_view = TestViews()
-        solicitud = test_view.agrega_solicitud()
+        usuario = self.agregar_usuario()
+        solicitud = test_view.agrega_solicitud(usuario)
         solicitud.segundo_apellido = None
 
         self.assertEqual(solicitud.segundo_apellido, None)
@@ -547,7 +550,8 @@ class TestModels(TestCase):
     def test_actualiza_estatus(self):
         test_view = TestViews()
         estatus = test_view.agrega_estatus()
-        solicitud = test_view.agrega_solicitud()
+        usuario = self.agregar_usuario()
+        solicitud = test_view.agrega_solicitud(usuario)
 
         solicitud.estatus = estatus
         estatus.estatus = 'Aceptado'
@@ -563,11 +567,11 @@ class TestModels(TestCase):
             calle='Montes de Oca',
             numero=3,
             colonia='San francisco',
-            codigo_postal=98613,
+            codigo_postal='98613',
             estado=test_view.agrega_estado(),
             municipio=test_view.agrega_municipio(),
             localidad=test_view.agrega_localidad(),
-            telefono=4941025153,
+            telefono='4941025153',
             ine="imagen.png",
             dado_baja=False
         )
