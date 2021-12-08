@@ -17,26 +17,31 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='solicitud',
             name='estado',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.estado', verbose_name='Estado'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='usuarios.estado', verbose_name='Estado'),
         ),
         migrations.AddField(
             model_name='solicitud',
             name='estatus',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='solicitudes.estatussolicitud', verbose_name='Estatus de la solicitud'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='solicitudes.estatussolicitud', verbose_name='Estatus de la solicitud'),
         ),
         migrations.AddField(
             model_name='solicitud',
             name='localidad',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.localidad', verbose_name='Localidad'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='usuarios.localidad', verbose_name='Localidad'),
         ),
         migrations.AddField(
             model_name='solicitud',
             name='municipio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.municipio', verbose_name='Municipio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='usuarios.municipio', verbose_name='Municipio'),
         ),
         migrations.AddField(
             model_name='solicitud',
             name='usuario',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.usuario', verbose_name='Usuario'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='usuarios.usuario', verbose_name='Usuario'),
         ),
     ]

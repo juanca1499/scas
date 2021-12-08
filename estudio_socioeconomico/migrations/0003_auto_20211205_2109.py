@@ -28,51 +28,61 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='estudiosocioeconomico',
             name='cabeza_familia',
-            field=models.BooleanField(default=False, verbose_name='Es cabeza de familia'),
+            field=models.BooleanField(
+                default=False, verbose_name='Es cabeza de familia'),
         ),
         migrations.AddField(
             model_name='estudiosocioeconomico',
             name='numero_exterior',
-            field=models.PositiveIntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(1)], verbose_name='Número exterior'),
+            field=models.PositiveIntegerField(blank=True, null=True, validators=[
+                                              django.core.validators.MinValueValidator(1)], verbose_name='Número exterior'),
         ),
         migrations.AddField(
             model_name='estudiosocioeconomico',
             name='numero_interior',
-            field=models.PositiveIntegerField(default=1, validators=[django.core.validators.MinValueValidator(1)], verbose_name='Número interior'),
+            field=models.PositiveIntegerField(default=1, validators=[
+                                              django.core.validators.MinValueValidator(1)], verbose_name='Número interior'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='comprobante_domicilio',
-            field=models.FileField(upload_to='estudio/comprobante/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')], verbose_name='Comprobante de domicilio'),
+            field=models.FileField(upload_to='estudio/comprobante/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=[
+                                   'png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')], verbose_name='Comprobante de domicilio'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='credencial',
-            field=models.FileField(upload_to='estudio/ine/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')], verbose_name='Credencial INE/IFE'),
+            field=models.FileField(upload_to='estudio/ine/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=[
+                                   'png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')], verbose_name='Credencial INE/IFE'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='enfermedad_otro',
-            field=models.CharField(blank=True, max_length=60, null=True, verbose_name='Otro (Especifique)'),
+            field=models.CharField(
+                blank=True, max_length=60, null=True, verbose_name='Otro (Especifique)'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='folio',
-            field=models.AutoField(primary_key=True, serialize=False, verbose_name='Folio'),
+            field=models.AutoField(
+                primary_key=True, serialize=False, verbose_name='Folio'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='otros_caracteristicas_casa',
-            field=models.CharField(blank=True, max_length=60, null=True, verbose_name='Otro'),
+            field=models.CharField(
+                blank=True, max_length=60, null=True, verbose_name='Otro'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='receta',
-            field=models.FileField(blank=True, null=True, upload_to=' estudio/receta/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')], verbose_name='Receta en caso de ser necesario'),
+            field=models.FileField(blank=True, null=True, upload_to=' estudio/receta/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=[
+                                   'png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')], verbose_name='Receta en caso de ser necesario'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='servicio_salud',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='estudio_socioeconomico.serviciosalud', verbose_name='Servicio de salud'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='estudio_socioeconomico.serviciosalud', verbose_name='Servicio de salud'),
         ),
     ]

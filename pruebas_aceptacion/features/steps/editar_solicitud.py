@@ -18,6 +18,7 @@ def step_impl(context, campo, valor):
     context.driver.find_element_by_name(campo).clear()
     context.driver.find_element_by_name(campo).send_keys(valor)
 
+
 @when(u'presiono el botón "Guardar"')
 def step_impl(context):
     context.driver.find_element_by_id('submit').send_keys(Keys.ENTER)

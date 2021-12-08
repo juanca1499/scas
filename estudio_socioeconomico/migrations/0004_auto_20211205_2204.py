@@ -14,11 +14,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='numero_exterior',
-            field=models.PositiveIntegerField(default=0, validators=[django.core.validators.MinValueValidator(1)], verbose_name='Número exterior'),
+            field=models.PositiveIntegerField(default=0, validators=[
+                                              django.core.validators.MinValueValidator(1)], verbose_name='Número exterior'),
         ),
         migrations.AlterField(
             model_name='estudiosocioeconomico',
             name='numero_interior',
-            field=models.PositiveIntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(1)], verbose_name='Número interior'),
+            field=models.PositiveIntegerField(blank=True, null=True, validators=[
+                                              django.core.validators.MinValueValidator(1)], verbose_name='Número interior'),
         ),
     ]

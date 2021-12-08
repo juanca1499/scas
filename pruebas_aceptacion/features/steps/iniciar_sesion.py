@@ -13,7 +13,7 @@ def step_impl(context):
 def step_impl(context, usuario, contra):
     context.driver.find_element_by_name('username').send_keys(usuario)
     context.driver.find_element_by_name('password').send_keys(contra)
-    
+
 
 @when(u'presiono el botón de inicio de sesión')
 def step_impl(context):
@@ -24,7 +24,7 @@ def step_impl(context):
 @then(u'el sistema me dirige a la página donde se muestran las solicitudes de apoyos que se han realizado.')
 def step_impl(context):
     assert context.driver.current_url == context.url + 'solicitudes/'
-    
+
 
 @then(u'el sistema me muestra el mensaje "{mensaje}"')
 def step_impl(context, mensaje):

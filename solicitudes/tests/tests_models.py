@@ -10,7 +10,7 @@ from solicitudes.tests.tests_views import TestViews
 class TestModels(TestCase):
     def test_humo(self):
         self.assertEqual(2 + 2, 4)
-        
+
     def test_agrega_estatus_solicitud(self):
         estatus = EstatusSolicitud.objects.create(
             estatus='En Tramite'
@@ -22,7 +22,7 @@ class TestModels(TestCase):
         self.assertEqual(estatus_1.estatus, 'En Tramite')
         self.assertEqual(str(estatus_1), 'En Tramite')
         self.assertEqual(len(EstatusSolicitud.objects.all()), 1)
-        
+
     def test_agrega_estado(self):
         estado = Estado.objects.create(
             nombre='Zacatecas'
@@ -33,7 +33,7 @@ class TestModels(TestCase):
         self.assertEqual(estado_1, estado)
         self.assertEqual(estado_1.nombre, 'Zacatecas')
         self.assertEqual(len(Estado.objects.all()), 1)
-        
+
     def test_agrega_municipio(self):
         estado = Estado.objects.create(
             nombre='Zacatecas'
@@ -48,8 +48,7 @@ class TestModels(TestCase):
         self.assertEqual(municipio_1, municipio)
         self.assertEqual(municipio_1.nombre, 'Jerez')
         self.assertEqual(len(Municipio.objects.all()), 1)
-        
-        
+
     def test_agrega_localidad(self):
         estado = Estado.objects.create(
             nombre='Zacatecas'
@@ -68,8 +67,7 @@ class TestModels(TestCase):
         self.assertEqual(localidad_1, localidad)
         self.assertEqual(localidad_1.nombre, 'Cienega')
         self.assertEqual(len(Localidad.objects.all()), 1)
-            
-        
+
     def test_agrega_solicitud(self):
         test_views = TestViews()
         estatus = test_views.agrega_estatus()
@@ -129,7 +127,7 @@ class TestModels(TestCase):
         estado = test_views.agrega_estado()
         municipio = test_views.agrega_municipio()
         localidad = test_views.agrega_localidad()
-        
+
         with self.assertRaises(IntegrityError):
             Solicitud.objects.create(
                 fecha=None,
@@ -158,7 +156,7 @@ class TestModels(TestCase):
         estado = test_views.agrega_estado()
         municipio = test_views.agrega_municipio()
         localidad = test_views.agrega_localidad()
-        
+
         with self.assertRaises(IntegrityError):
             Solicitud.objects.create(
                 fecha='2021-11-17',
@@ -441,7 +439,7 @@ class TestModels(TestCase):
                 resumen='El joven Juan Carlos es un estudiante universitario',
                 usuario=self.agregar_usuario()
             )
-            
+
     def test_estado_requerido(self):
         test_views = TestViews()
         estatus = test_views.agrega_estatus()
@@ -470,7 +468,7 @@ class TestModels(TestCase):
                 resumen='El joven Juan Carlos es un estudiante universitario',
                 usuario=self.agregar_usuario()
             )
-            
+
     def test_municipio_requerido(self):
         test_views = TestViews()
         estatus = test_views.agrega_estatus()
@@ -499,7 +497,7 @@ class TestModels(TestCase):
                 resumen='El joven Juan Carlos es un estudiante universitario',
                 usuario=self.agregar_usuario()
             )
-    
+
     def test_localidad_requerido(self):
         test_views = TestViews()
         estatus = test_views.agrega_estatus()
@@ -528,7 +526,7 @@ class TestModels(TestCase):
                 resumen='El joven Juan Carlos es un estudiante universitario',
                 usuario=self.agregar_usuario()
             )
-            
+
     def test_excede_longitud_nombre(self):
         test_view = TestViews()
         usuario = self.agregar_usuario()
@@ -537,7 +535,7 @@ class TestModels(TestCase):
         solicitud.nombre = 'Cesarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr'
         with self.assertRaises(ValidationError):
             solicitud.full_clean()
-            
+
     def test_segundo_apellido_null(self):
         test_view = TestViews()
         usuario = self.agregar_usuario()
@@ -546,7 +544,7 @@ class TestModels(TestCase):
 
         self.assertEqual(solicitud.segundo_apellido, None)
         self.assertEqual(str(solicitud), 'DICC990912HZSZRS07')
-        
+
     def test_actualiza_estatus(self):
         test_view = TestViews()
         estatus = test_view.agrega_estatus()
@@ -558,11 +556,11 @@ class TestModels(TestCase):
 
         self.assertEqual(solicitud.estatus, estatus)
         self.assertEqual(str(solicitud.estatus), 'Aceptado')
-    
+
     def agregar_usuario(self):
         test_view = TestViews()
         usuario = Usuario.objects.create_user(
-            username='gabriel12', 
+            username='gabriel12',
             password='admin123',
             calle='Montes de Oca',
             numero=3,

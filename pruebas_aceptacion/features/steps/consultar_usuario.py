@@ -6,7 +6,8 @@ import time
 def step_impl(context):
     tabla = context.driver.find_element_by_tag_name('tbody')
     tr_usuario = tabla.find_elements_by_tag_name('tr')[1]
-    context.usuario = tr_usuario.find_elements_by_tag_name('td')[3].get_attribute('innerHTML')
+    context.usuario = tr_usuario.find_elements_by_tag_name(
+        'td')[3].get_attribute('innerHTML')
     td_opciones = tr_usuario.find_elements_by_tag_name('td')[6]
     boton_detalle = td_opciones.find_elements_by_tag_name('a')[0]
     boton_detalle.click()

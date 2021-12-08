@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 
 import time
 
+
 @given(u'me dirijo a estudios socioeconomicos')
 def step_impl(context):
     context.driver.get(f"{context.url}{'estudio-socieconomico'}")
@@ -16,11 +17,13 @@ def step_impl(context):
     td_opciones = tr_usuario.find_elements_by_tag_name('td')[6]
     boton_editar = td_opciones.find_elements_by_tag_name('a')[1]
     boton_editar.click()
-    
+
+
 @given(u'cambio la colonia por "{colonia}"')
-def step_impl(context,colonia):
+def step_impl(context, colonia):
     context.driver.find_element_by_id('id_colonia').clear()
     context.driver.find_element_by_id('id_colonia').send_keys(colonia)
+
 
 @when(u'presiono botón "Guardar"')
 def step_impl(context):

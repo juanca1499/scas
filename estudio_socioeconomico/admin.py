@@ -13,4 +13,3 @@ admin.site.register(Ocupacion)
 admin.site.register(CasaEs)
 admin.site.register(ServicioSalud)
 admin.site.register(EstudioSocioeconomico)
-

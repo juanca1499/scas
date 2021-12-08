@@ -14,31 +14,37 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='estado',
             name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
         migrations.AlterField(
             model_name='localidad',
             name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
         migrations.AlterField(
             model_name='municipio',
             name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
         migrations.AlterField(
             model_name='usuario',
             name='codigo_postal',
-            field=models.CharField(max_length=5, validators=[django.core.validators.MinLengthValidator(5, 'El código postal debe contener cinco dígitos.'), django.core.validators.RegexValidator('^[0-9]*$', 'Sólo se permiten números.')], verbose_name='Código postal'),
+            field=models.CharField(max_length=5, validators=[django.core.validators.MinLengthValidator(
+                5, 'El código postal debe contener cinco dígitos.'), django.core.validators.RegexValidator('^[0-9]*$', 'Sólo se permiten números.')], verbose_name='Código postal'),
         ),
         migrations.AlterField(
             model_name='usuario',
             name='dado_baja',
-            field=models.BooleanField(default=False, validators=[django.core.validators.MaxLengthValidator(1, 'El campo sólo puede contener un dígito'), django.core.validators.MinValueValidator(0, 'Sólo se permiten los valores 0 y 1'), django.core.validators.MaxValueValidator(1, 'Sólo se permiten los valores 0 y 1')], verbose_name='Dado de baja'),
+            field=models.BooleanField(default=False, validators=[django.core.validators.MaxLengthValidator(1, 'El campo sólo puede contener un dígito'), django.core.validators.MinValueValidator(
+                0, 'Sólo se permiten los valores 0 y 1'), django.core.validators.MaxValueValidator(1, 'Sólo se permiten los valores 0 y 1')], verbose_name='Dado de baja'),
         ),
         migrations.AlterField(
             model_name='usuario',
             name='telefono',
-            field=models.CharField(max_length=10, validators=[django.core.validators.RegexValidator('^[0-9]*$', 'Sólo se permiten números.'), django.core.validators.MinLengthValidator(10, 'El teléfono debe contener diez dígitos.')], verbose_name='Teléfono'),
+            field=models.CharField(max_length=10, validators=[django.core.validators.RegexValidator(
+                '^[0-9]*$', 'Sólo se permiten números.'), django.core.validators.MinLengthValidator(10, 'El teléfono debe contener diez dígitos.')], verbose_name='Teléfono'),
         ),
     ]

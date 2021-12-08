@@ -13,11 +13,12 @@ from usuarios.models import Usuario
 from .models import EstudioSocioeconomico
 from .forms import EstudiosocioeconomicoForm
 
+
 class ListaEstudio(ListView):
     model = EstudioSocioeconomico
     context_object_name = 'estudios'
     template_name = 'estudio_socioeconomico/estudio_list.html'
-    
+
     # def get(self,request,*args,**kwargs):
     #     user = request.user
     #     if user.is_superuser == 1:
@@ -26,12 +27,13 @@ class ListaEstudio(ListView):
     #     usuario = get_object_or_404(Usuario,username=request.user.username)
     #     # Es capturista, se muestran solamente las solicitudes que el usuario ha registrado
     #     lista_solicitudes = Solicitud.objects.filter(usuario=usuario.id)
-    #     # Se obtiene asigna el context_object_name definido 
+    #     # Se obtiene asigna el context_object_name definido
     #     self.object_list = self.get_queryset()
     #     # Se agregan las solicitudes filtradas a la lista de variables a pasar al template
     #     context = self.get_context_data()
     #     context['solicitudes'] = lista_solicitudes
     #     return self.render_to_response(context)
+
 
 class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
     model = EstudioSocioeconomico
@@ -39,7 +41,7 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
     extra_context = {'etiqueta': 'Nuevo', 'boton': 'Agregar'}
     template_name = 'estudio_socioeconomico/estudio_form.html'
     success_url = reverse_lazy('estudio_socioeconomico:lista')
-           
+
     def dispatch(self, request, *args, **kwargs):
         self.solicitud = get_object_or_404(Solicitud, pk=kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
@@ -48,18 +50,21 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
         form.instance.solicitud = self.solicitud
         self.estudio_socioeconomico = form.save(commit=False)
         self.estudio_socioeconomico.save()
-        messages.success(self.request, 'Estudio socioeconómico guardado exitosamente.')
+        messages.success(
+            self.request, 'Estudio socioeconómico guardado exitosamente.')
         return super().form_valid(form)
-    
+
     def form_invalid(self, form):
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
         return super(NuevoEstudioSocioeconomico, self).form_invalid(form)
-    
+
+
 class DetalleEstudio(LoginRequiredMixin, DetailView):
     model = EstudioSocioeconomico
     context_object_name = "estudio"
     template_name = 'estudio_socioeconomico/estudio_detail.html'
-    
+
+
 class EditarEstudio(LoginRequiredMixin, UpdateView):
     model = EstudioSocioeconomico
     form_class = EstudiosocioeconomicoForm

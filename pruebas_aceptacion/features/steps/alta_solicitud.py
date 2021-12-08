@@ -9,39 +9,47 @@ def step_impl(context):
     context.driver.get(f"{context.url}{'admin/logout'}")
     context.driver.get(context.url)
 
+
 @given(u'capturo en el usuario "{usuario}" y en la contraseña "{contra}"')
 def step_impl(context, usuario, contra):
     context.driver.find_element_by_name('username').send_keys(usuario)
     context.driver.find_element_by_name('password').send_keys(contra)
     time.sleep(1)
 
+
 @given(u'inicio sesión')
 def step_impl(context):
     context.driver.find_element_by_tag_name('button').click()
     time.sleep(1)
+
 
 @given(u'selecciono el botón "boton"')
 def step_impl(context):
     context.driver.find_element_by_link_text('Agregar solicitud').click()
     context.url_solicitudes = context.driver.current_url
 
+
 @given(u'selecciono agregar solicitud')
 def step_impl(context):
     context.driver.find_element_by_link_text('Agregar').click()
     context.url_formulario = context.driver.current_url
 
+
 @given(u'capturo "{fecha}" en la fecha de la solicitud')
 def step_impl(context, fecha):
     context.driver.find_element_by_id('id_fecha').send_keys(fecha)
+
 
 @given(u'capturo "{nombre}" en el nombre')
 def step_impl(context, nombre):
     context.driver.find_element_by_id('id_nombre').send_keys(nombre)
 
+
 @given(u'capturo "{primer_ap}" en el primer apellido')
 def step_impl(context, primer_ap):
     context.driver.find_element_by_id(
         'id_primer_apellido').send_keys(primer_ap)
+
 
 @given(u'capturo "{segundo_ap}" en el segundo apellido')
 def step_impl(context, segundo_ap):
@@ -85,42 +93,50 @@ def step_impl(context, lugar_nac):
     context.driver.find_element_by_id(
         'id_lugar_nacimiento').send_keys(lugar_nac)
 
+
 @given(u'capturo "{fecha_nacimiento}" en la fecha de nacimiento')
 def step_impl(context, fecha_nacimiento):
     context.driver.find_element_by_id(
         'id_fecha_nacimiento').send_keys(fecha_nacimiento)
+
 
 @given(u'elijo "{estado}" en el estado')
 def step_impl(context, estado):
     select = Select(context.driver.find_element_by_id('id_estado'))
     select.select_by_visible_text(estado)
     time.sleep(1)
-    
+
+
 @given(u'elijo "{municipio}" en el municipio')
 def step_impl(context, municipio):
     select = Select(context.driver.find_element_by_id('id_municipio'))
     select.select_by_visible_text(municipio)
     time.sleep(1)
-    
+
+
 @given(u'elijo "{localidad}" en la localidad')
 def step_impl(context, localidad):
     select = Select(context.driver.find_element_by_id('id_localidad'))
     select.select_by_visible_text(localidad)
     time.sleep(1)
-    
+
+
 @given(u'elijo "{estatus}" en el estatus')
 def step_impl(context, estatus):
     select = Select(context.driver.find_element_by_id('id_estatus'))
     select.select_by_visible_text(estatus)
 
+
 @given(u'capturo "{correo}" en el correo')
 def step_impl(context, correo):
     context.driver.find_element_by_id('id_correo').send_keys(correo)
 
+
 @given(u'capturo "{resumen}" en el resumen de la solicitud')
 def step_impl(context, resumen):
     context.driver.find_element_by_id('id_resumen').send_keys(resumen)
-    
+
+
 @when(u'presiono el botón "Registrar"')
 def step_impl(context):
     context.driver.find_element_by_id('submit').send_keys(Keys.ENTER)

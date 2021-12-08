@@ -18,40 +18,54 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Estado',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=35, verbose_name='Estado')),
             ],
         ),
         migrations.CreateModel(
             name='Localidad',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=40, verbose_name='Localidad')),
             ],
         ),
         migrations.CreateModel(
             name='Municipio',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=35, verbose_name='Municipio')),
-                ('estado', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.estado', verbose_name='Estado')),
+                ('estado', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='usuarios.estado', verbose_name='Estado')),
             ],
         ),
         migrations.CreateModel(
             name='Usuario',
             fields=[
-                ('user_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='auth.user')),
-                ('segundo_apellido', models.CharField(blank=True, max_length=35, null=True, verbose_name='Segundo apellido')),
+                ('user_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE,
+                 parent_link=True, primary_key=True, serialize=False, to='auth.user')),
+                ('segundo_apellido', models.CharField(blank=True,
+                 max_length=35, null=True, verbose_name='Segundo apellido')),
                 ('calle', models.CharField(max_length=40, verbose_name='Calle')),
-                ('numero', models.IntegerField(validators=[django.core.validators.MinValueValidator(1, 'El número debe estar entre 1 y 9999.'), django.core.validators.MaxValueValidator(9999, 'El número debe estar entre 1 y 9999.')], verbose_name='Número')),
+                ('numero', models.IntegerField(validators=[django.core.validators.MinValueValidator(
+                    1, 'El número debe estar entre 1 y 9999.'), django.core.validators.MaxValueValidator(9999, 'El número debe estar entre 1 y 9999.')], verbose_name='Número')),
                 ('colonia', models.CharField(max_length=35, verbose_name='Colonia')),
-                ('codigo_postal', models.IntegerField(validators=[django.core.validators.MinLengthValidator(5, 'El código postal debe contener cinco dígitos.'), django.core.validators.MaxLengthValidator(5, 'El código postal debe contener cinco dígitos.'), django.core.validators.RegexValidator('^[0-9]*$', 'Sólo se permiten números.')], verbose_name='Código postal')),
-                ('telefono', models.CharField(max_length=10, validators=[django.core.validators.MinLengthValidator(10, 'El teléfono debe contener diez dígitos.')], verbose_name='Teléfono')),
-                ('ine', models.FileField(upload_to='usuarios/ine/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')])),
-                ('dado_baja', models.BooleanField(default=False, verbose_name='Dado de baja')),
-                ('estado', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.estado', verbose_name='Estado')),
-                ('localidad', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.localidad', verbose_name='Localidad')),
-                ('municipio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.municipio', verbose_name='Municipio')),
+                ('codigo_postal', models.IntegerField(validators=[django.core.validators.MinLengthValidator(5, 'El código postal debe contener cinco dígitos.'), django.core.validators.MaxLengthValidator(
+                    5, 'El código postal debe contener cinco dígitos.'), django.core.validators.RegexValidator('^[0-9]*$', 'Sólo se permiten números.')], verbose_name='Código postal')),
+                ('telefono', models.CharField(max_length=10, validators=[django.core.validators.MinLengthValidator(
+                    10, 'El teléfono debe contener diez dígitos.')], verbose_name='Teléfono')),
+                ('ine', models.FileField(upload_to='usuarios/ine/', validators=[django.core.validators.FileExtensionValidator(
+                    allowed_extensions=['png', 'jpeg', 'jpg', 'pdf'], message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.')])),
+                ('dado_baja', models.BooleanField(
+                    default=False, verbose_name='Dado de baja')),
+                ('estado', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='usuarios.estado', verbose_name='Estado')),
+                ('localidad', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='usuarios.localidad', verbose_name='Localidad')),
+                ('municipio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='usuarios.municipio', verbose_name='Municipio')),
             ],
             options={
                 'verbose_name': 'user',
@@ -66,6 +80,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='localidad',
             name='municipio',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.municipio', verbose_name='Municipio'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    to='usuarios.municipio', verbose_name='Municipio'),
         ),
     ]

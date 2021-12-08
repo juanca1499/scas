@@ -22,12 +22,14 @@ def step_impl(context, nombre):
 
 @given(u'capturo el primer apellido "{primer_apellido}"')
 def step_impl(context, primer_apellido):
-    context.driver.find_element_by_id('id_last_name').send_keys(primer_apellido)
+    context.driver.find_element_by_id(
+        'id_last_name').send_keys(primer_apellido)
 
 
 @given(u'capturo el segundo apellido "{segundo_apellido}"')
 def step_impl(context, segundo_apellido):
-    context.driver.find_element_by_id('id_segundo_apellido').send_keys(segundo_apellido)
+    context.driver.find_element_by_id(
+        'id_segundo_apellido').send_keys(segundo_apellido)
 
 
 @given(u'capturo la calle "{calle}"')
@@ -47,7 +49,8 @@ def step_impl(context, colonia):
 
 @given(u'capturo el código postal "{codigo_postal}"')
 def step_impl(context, codigo_postal):
-    context.driver.find_element_by_id('id_codigo_postal').send_keys(codigo_postal)
+    context.driver.find_element_by_id(
+        'id_codigo_postal').send_keys(codigo_postal)
 
 
 @given(u'elijo el estado "{estado}"')
@@ -83,7 +86,8 @@ def step_impl(context, telefono):
 
 @given(u'subo fotografía de mi INE')
 def step_impl(context):
-    context.driver.find_element_by_id('id_ine').send_keys(r'C:/Users/karlo/Desktop/PruebasArchivos/Cred.pdf')
+    context.driver.find_element_by_id('id_ine').send_keys(
+        r'C:/Users/karlo/Desktop/PruebasArchivos/Cred.pdf')
 
 
 @given(u'capturo el usuario "{usuario}"')

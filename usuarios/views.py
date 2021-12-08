@@ -21,15 +21,16 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         usuario = authenticate(username=username, password=password)
-    
+
         if usuario is not None:
             if usuario.is_active:
                 auth_login(request, usuario)
                 return redirect('solicitudes:lista')
         else:
-            messages.error(request,'El usuario o la contraseña no son correctos')
+            messages.error(
+                request, 'El usuario o la contraseña no son correctos')
             return redirect('usuarios:login')
-    
+
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
@@ -37,24 +38,27 @@ def login(request):
 
 # Clase correspondiente al logout de los usuarios.
 class UsuarioLogout(LoginRequiredMixin, LogoutView):
-    template_name='login.html'
-    
+    template_name = 'login.html'
+
+
 class UsuarioLista(PermissionRequiredMixin, ListView):
     permission_required = 'usuarios.view_usuario'
     model = Usuario
     context_object_name = 'usuarios'
-    
+
+
 class UsuarioNuevo(PermissionRequiredMixin, CreateView):
     permission_required = 'usuarios.add_usuario'
     model = Usuario
     extra_context = {'etiqueta': 'Nuevo', 'boton': 'Agregar'}
     form_class = FormUsuario
     success_url = reverse_lazy('usuarios:lista')
-    
+
     def form_invalid(self, form):
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
         return super(UsuarioNuevo, self).form_invalid(form)
-    
+
+
 @login_required
 @permission_required('usuarios.delete_usuario', raise_exception=True)
 def baja_usuario(request, pk):
@@ -64,6 +68,7 @@ def baja_usuario(request, pk):
         usuario.save()
         messages.success(request, '¡Cuenta dada de baja con éxito!')
     return redirect('usuarios:lista')
+
 
 class UsuarioEditar(PermissionRequiredMixin, UpdateView):
     permission_required = 'usuarios.change_usuario'
@@ -76,11 +81,12 @@ class UsuarioEditar(PermissionRequiredMixin, UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
         return super(UsuarioEditar, self).form_invalid(form)
-    
+
     def form_valid(self, form):
         messages.success(self.request, '¡Registro actualizado con éxito!')
         return super(UsuarioEditar, self).form_valid(form)
-    
+
+
 class UsuarioDetalle(PermissionRequiredMixin, DetailView):
     permission_required = 'usuarios.view_usuario'
     model = Usuario
