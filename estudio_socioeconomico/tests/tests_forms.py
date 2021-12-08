@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.forms import AuthenticationForm
-from estudio_socioeconomico.test.test_views import TestViews
+from estudio_socioeconomico.tests.tests_views import TestViews
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from estudio_socioeconomico.models import *

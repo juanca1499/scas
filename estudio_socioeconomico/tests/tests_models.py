@@ -2,7 +2,7 @@ from django import test
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
-from estudio_socioeconomico.test.test_views import TestViews
+from estudio_socioeconomico.tests.tests_views import TestViews
 from usuarios.models import Estado, Municipio, Localidad, Usuario
 from solicitudes.models import Solicitud, EstatusSolicitud
 from estudio_socioeconomico.models import *

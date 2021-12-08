@@ -52,7 +52,6 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
     
     def form_invalid(self, form):
-        print(form.errors)
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
         return super(NuevoEstudioSocioeconomico, self).form_invalid(form)
     
