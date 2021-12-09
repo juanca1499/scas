@@ -1,11 +1,14 @@
+from django.contrib.auth.models import Group, Permission
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import JsonResponse
+import datetime
 
 from .models import Solicitud
 from usuarios.models import Usuario, Estado, Municipio, Localidad
@@ -13,7 +16,8 @@ from estudio_socioeconomico.models import EstudioSocioeconomico
 from .forms import SolicitudForm
 
 
-class ListaSolicitud(LoginRequiredMixin, ListView):
+class ListaSolicitud(PermissionRequiredMixin, ListView):
+    permission_required = 'solicitudes.view_solicitud'
     model = Solicitud
     context_object_name = 'solicitudes'
 
@@ -33,7 +37,8 @@ class ListaSolicitud(LoginRequiredMixin, ListView):
         return self.render_to_response(context)
 
 
-class NuevaSolicitud(LoginRequiredMixin, CreateView):
+class NuevaSolicitud(PermissionRequiredMixin, CreateView):
+    permission_required = 'solicitudes.add_solicitud'
     model = Solicitud
     form_class = SolicitudForm
     extra_context = {'etiqueta': 'Nueva', 'boton': 'Registrar'}
@@ -45,6 +50,7 @@ class NuevaSolicitud(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.solicitud = form.save(commit=False)
+        self.solicitud.fecha = datetime.datetime.now().strftime ("%Y-%m-%d")
         usuario = get_object_or_404(
             Usuario, username=self.request.user.username)
         self.solicitud.usuario = usuario
@@ -53,7 +59,8 @@ class NuevaSolicitud(LoginRequiredMixin, CreateView):
         return super(NuevaSolicitud, self).form_valid(form)
 
 
-class EditarSolicitud(LoginRequiredMixin, UpdateView):
+class EditarSolicitud(PermissionRequiredMixin, UpdateView):
+    permission_required = 'solicitudes.edit_solicitud'
     model = Solicitud
     form_class = SolicitudForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
@@ -68,7 +75,8 @@ class EditarSolicitud(LoginRequiredMixin, UpdateView):
         return super(EditarSolicitud, self).form_invalid(form)
 
 
-class DetalleSolicitud(LoginRequiredMixin, DetailView):
+class DetalleSolicitud(PermissionRequiredMixin, DetailView):
+    permission_required = 'solicitudes.view_solicitud'
     model = Solicitud
     context_object_name = "solicitud"
 

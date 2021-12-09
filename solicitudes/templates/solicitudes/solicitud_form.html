@@ -48,6 +48,7 @@
     <form method="POST">
         {% csrf_token %}
         {{form.usuario}}
+        {{form.fecha}}
         <section>
             <div class="container">
                 <p style="display: inline;"><b>Datos del solicitante</b></p>
@@ -144,11 +145,6 @@
                 <p style="display: inline;"><b>Datos de la solicitud</b></p>
                 <hr>
                 <p style="display: inline;">
-                    <p>
-                        {{form.fecha.errors}}
-                        {{form.fecha.label_tag}}
-                        {{form.fecha}}
-                    </p>
                     <p>
                         {{form.estatus.errors}}
                         {{form.estatus.label_tag}}

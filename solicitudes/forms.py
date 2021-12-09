@@ -7,12 +7,6 @@ class DateInput(forms.DateInput):
 
 
 class SolicitudForm(forms.ModelForm):
-    fecha = forms.DateField(label='Fecha',
-                            widget=DateInput(
-                                format='%Y-%m-%d',
-                                attrs={'class': 'form-control'}),
-                            required=False)
-
     fecha_nacimiento = forms.DateField(label='Fecha de nacimiento',
                                        widget=DateInput(
                                            format='%Y-%m-%d',
@@ -22,12 +16,14 @@ class SolicitudForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(SolicitudForm, self).__init__(*args, **kwargs)
         self.fields['usuario'].required = False
+        self.fields['fecha'].required = False
 
     class Meta:
         model = Solicitud
         fields = '__all__'
 
         widgets = {
+            'fecha': forms.HiddenInput(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'primer_apellido': forms.TextInput(attrs={'class': 'form-control'}),
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control'}),
