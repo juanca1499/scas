@@ -25,14 +25,17 @@ def login(request):
         usuario = authenticate(username=username, password=password)
 
         if usuario is not None:
-            if usuario.is_active:
-                auth_login(request, usuario)
-                return redirect('solicitudes:lista')
+            usuario = Usuario.objects.get(username=username)
+            if usuario.dado_baja == False:
+                if usuario.is_active:
+                    auth_login(request, usuario)
+                    return redirect('solicitudes:lista')
+            else:
+                messages.info(
+                    request, 'El usuario ingresado ha sido dado de baja')
         else:
             messages.error(
                 request, 'El usuario o la contraseña no son correctos')
-            return redirect('usuarios:login')
-
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
