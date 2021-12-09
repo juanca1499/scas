@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import RegexValidator, MinLengthValidator, MinValueValidator, FileExtensionValidator
+from django.core.validators import MaxValueValidator, RegexValidator, MinLengthValidator, MinValueValidator, FileExtensionValidator
 from datetime import date
 
 solo_numeros = RegexValidator(r'^[0-9]*$', 'Sólo se permiten números.')
@@ -8,6 +8,20 @@ validador_archivo = FileExtensionValidator(
     allowed_extensions=['png', 'jpeg', 'jpg', 'pdf'],
     message='Sólo se permiten imágenes PNG, JPG, JPEG o PDF.'
 )
+
+
+def autoincremento_folio(): 
+    incremento = EstudioSocioeconomico.objects.all().order_by('folio').last()
+    if not incremento:
+        # Si la tabla no tiene registros regresamos el valor inicial del folio
+        return '0001' # 0001 Es el valor inicial del folio
+    else:
+        num = incremento.folio
+        numeracion = num[4:8]
+        numeracion = int(numeracion)
+        numeracion = numeracion + 1
+        numeracion = str(numeracion).zfill(4)
+        return numeracion
 
 
 class Escolaridad(models.Model):
@@ -120,8 +134,8 @@ class ServicioSalud(models.Model):
         verbose_name_plural = 'Servicios de salud'
 
 
-class EstudioSocioeconomico(models.Model):
-    folio = models.AutoField("Folio", primary_key=True)
+class EstudioSocioeconomico(models.Model): 
+    folio = models.CharField("Folio", primary_key=True, max_length=8, default=autoincremento_folio)
     fecha_actual = models.DateField("Fecha")
     credencial = models.FileField(
         "Credencial INE/IFE", upload_to='estudio/ine/', validators=[validador_archivo])
@@ -226,12 +240,11 @@ class EstudioSocioeconomico(models.Model):
     enfermedad_alzhaimer = models.BooleanField("Alhzaimer", default=False)
     enfermedad_otro = models.CharField(
         "Otro (Especifique)", max_length=60, blank=True, null=True)
-    receta = models.FileField("Receta en caso de ser necesario", upload_to=' estudio/receta/',
+    receta = models.FileField("Receta en caso de ser necesario", upload_to='estudio/receta/',
                               validators=[validador_archivo], blank=True, null=True)
 
     class Meta:
         verbose_name = 'Estudio socioesconomico'
         verbose_name_plural = 'Estudios socioeconomicos'
-
-    def get_folio_formateado(self):
-        return str(self.folio).zfill(4)
+    
+    

@@ -55,7 +55,7 @@
                     {% for estudio in estudios %}
                         <!-- Se muestran los datos de las solicitudes en la tabla--> 
                         <tr>
-                            <td>{{estudio.get_folio_formateado}}</td>
+                            <td>{{estudio.folio}}</td>
                             <td>{{estudio.fecha_actual}}</td>
                             <td>{{estudio.solicitud.nombre}}</td>
                             <td>{{estudio.solicitud.primer_apellido}} 

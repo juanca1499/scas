@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls.base import resolve
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -18,15 +18,17 @@ class ListaEstudio(ListView):
     model = EstudioSocioeconomico
     context_object_name = 'estudios'
     template_name = 'estudio_socioeconomico/estudio_list.html'
-
+    
     # def get(self,request,*args,**kwargs):
     #     user = request.user
+    #     print(user)
     #     if user.is_superuser == 1:
     #         return super().get(request,*args,**kwargs)
     #     # Se obtiene el usuario logueado
     #     usuario = get_object_or_404(Usuario,username=request.user.username)
+    #     solicitud = Solicitud.objects.filter
     #     # Es capturista, se muestran solamente las solicitudes que el usuario ha registrado
-    #     lista_solicitudes = Solicitud.objects.filter(usuario=usuario.id)
+    #     lista_estudios = EstudioSocioeconomico.objects.filter(solicitud.usuario=usuario.id)
     #     # Se obtiene asigna el context_object_name definido
     #     self.object_list = self.get_queryset()
     #     # Se agregan las solicitudes filtradas a la lista de variables a pasar al template
@@ -41,7 +43,7 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
     extra_context = {'etiqueta': 'Nuevo', 'boton': 'Agregar'}
     template_name = 'estudio_socioeconomico/estudio_form.html'
     success_url = reverse_lazy('estudio_socioeconomico:lista')
-
+        
     def dispatch(self, request, *args, **kwargs):
         self.solicitud = get_object_or_404(Solicitud, pk=kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
@@ -49,12 +51,22 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.solicitud = self.solicitud
         self.estudio_socioeconomico = form.save(commit=False)
+        
+        rfc_corto_usuario = self.solicitud.usuario.rfc_corto 
+        rfc_corto = rfc_corto_usuario[0:4]
+        
+        folio_nuevo = rfc_corto + self.estudio_socioeconomico.folio
+        
+        self.estudio_socioeconomico.folio = folio_nuevo
+        
         self.estudio_socioeconomico.save()
+        
         messages.success(
             self.request, 'Estudio socioeconómico guardado exitosamente.')
         return super().form_valid(form)
 
     def form_invalid(self, form):
+        print(form.errors)
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
         return super(NuevoEstudioSocioeconomico, self).form_invalid(form)
 
