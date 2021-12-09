@@ -35,6 +35,7 @@ class CalculeRFC(BaseGenerator):
 
 		# Cálcula y agrega homoclave al RFC
 		rfc = self._dato_parcial
+		rfc = self.remover_accentos(rfc)
 		return rfc
 
 	def remover_accentos(self, s):
