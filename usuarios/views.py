@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group, Permission
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
@@ -69,9 +70,18 @@ class UsuarioNuevo(PermissionRequiredMixin, CreateView):
         rfc_corto = CalculeRFC(nombres=nombres, paterno=primer_apellido, 
         materno=segundo_apellido, fecha=fecha_formateada).data
         form.instance.rfc_corto = rfc_corto
-        form.save()
+                
+        if form.cleaned_data['tipo_usuario'] == 1:
+            # Es administrador
+            form.instance.is_superuser = 1
+            
+        elif form.cleaned_data['tipo_usuario'] == 2:
+            # Es encuestador
+            form.instance.is_superuser = 0
+            form.instance.groups.add(name='Encuestador')
+        messages.success(self.request, '¡Registro guardado con éxito!')
         return super(UsuarioNuevo, self).form_valid(form)
-        
+            
 @login_required
 @permission_required('usuarios.delete_usuario', raise_exception=True)
 def baja_usuario(request, pk):
@@ -96,6 +106,15 @@ class UsuarioEditar(PermissionRequiredMixin, UpdateView):
         return super(UsuarioEditar, self).form_invalid(form)
 
     def form_valid(self, form):
+        form.instance.groups.clear()
+        if form.cleaned_data['tipo_usuario'] == '1':
+            # Es administrador
+            form.instance.is_superuser = 1
+            
+        elif form.cleaned_data['tipo_usuario'] == '2':
+            # Es encuestador
+            form.instance.is_superuser = 0
+            form.instance.groups.add(Group.objects.get(name='Encuestadores'))
         messages.success(self.request, '¡Registro actualizado con éxito!')
         return super(UsuarioEditar, self).form_valid(form)
 

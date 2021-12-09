@@ -1,8 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.validators import MaxLengthValidator, MaxValueValidator, RegexValidator, MinLengthValidator, MinValueValidator, FileExtensionValidator
-
-import datetime
 
 
 class Estado(models.Model):

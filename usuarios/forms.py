@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import widgets
+from django.contrib.auth.models import Group
 
 from .models import Usuario
 
@@ -14,12 +14,18 @@ class FormUsuario(forms.ModelForm):
         format='%Y-%m-%d',
         attrs={'class':'form-control','placeholder':'Fecha de nacimiento'}),
     required=True)
-
+    
+    tipo_usuario = forms.ChoiceField(label='Tipo de usuario',
+    choices=[('','---------'),('1','Administrador'),('2','Encuestador')],
+    widget=forms.Select(
+        attrs={'class':'form-control', 'placeholder':'Tipo de usuario'}),
+    required=True)
+                
     class Meta:
         model = Usuario
         fields = ('first_name', 'last_name', 'segundo_apellido', 'fecha_nacimiento', 'calle', 
                   'numero_interior', 'numero_exterior', 'colonia', 'codigo_postal', 'estado',
-                  'municipio', 'localidad', 'email', 'telefono', 'ine', 'username', 'password')
+                  'municipio', 'localidad', 'email', 'telefono', 'ine', 'username', 'password',)
 
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre(s)'}),
@@ -55,7 +61,23 @@ class FormUsuarioEditar(forms.ModelForm):
         format='%Y-%m-%d',
         attrs={'class':'form-control','placeholder':'Fecha de nacimiento'}),
     required=True)
-
+    
+    tipo_usuario = forms.ChoiceField(label='Tipo de usuario',
+    choices=[('','---------'),('1','Administrador'),('2','Encuestador')],
+    widget=forms.Select(
+        attrs={'class':'form-control', 'placeholder':'Tipo de usuario'}),
+    required=True)
+    
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        if self.instance.pk:
+            if self.instance.is_superuser == 1:
+                # Se selecciona por default la opción de Administrador.
+                self.fields['tipo_usuario'].initial = '1'
+            else: 
+                # Se selecciona por default la opción de Encuestador.
+                self.fields['tipo_usuario'].initial = '2'
+            
     class Meta:
         model = Usuario
         fields = ('first_name', 'last_name', 'segundo_apellido', 'fecha_nacimiento', 'calle', 
