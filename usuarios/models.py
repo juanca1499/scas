@@ -59,6 +59,5 @@ class Usuario(User):
                                 solo_numeros, MinLengthValidator(10, 'El teléfono debe contener diez dígitos.')])
     ine = models.FileField(upload_to='usuarios/ine/',
                            max_length=100, validators=[validador_archivo])
-    dado_baja = models.BooleanField('Dado de baja', default=False, validators=[MaxLengthValidator(1, 'El campo sólo puede contener un dígito'), MinValueValidator(
-        0, 'Sólo se permiten los valores 0 y 1'), MaxValueValidator(1, 'Sólo se permiten los valores 0 y 1')])
+    dado_baja = models.BooleanField('Dado de baja', default=False)
     rfc_corto = models.CharField('RFC Corto', max_length=10, validators=[MinLengthValidator(10, 'El RFC corto debe contener diez caracteres.')])

@@ -5,13 +5,14 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Usuario
 from .forms import FormUsuario, FormUsuarioEditar
+from .generar_curp.calcule import CalculeRFC 
 
 
 # Función correspondiente al login de los usuarios.
@@ -57,8 +58,20 @@ class UsuarioNuevo(PermissionRequiredMixin, CreateView):
     def form_invalid(self, form):
         messages.error(self.request, 'Hay datos inválidos en el formulario.')
         return super(UsuarioNuevo, self).form_invalid(form)
-
-
+    
+    def form_valid(self, form):
+        nombres = form.cleaned_data['first_name']
+        primer_apellido = form.cleaned_data['last_name']
+        segundo_apellido = form.cleaned_data['segundo_apellido']
+        fecha = str(form.cleaned_data['fecha_nacimiento'])
+        fecha = fecha.split('-')
+        fecha_formateada = fecha[2]+'-'+fecha[1]+'-'+fecha[0]
+        rfc_corto = CalculeRFC(nombres=nombres, paterno=primer_apellido, 
+        materno=segundo_apellido, fecha=fecha_formateada).data
+        form.instance.rfc_corto = rfc_corto
+        form.save()
+        return super(UsuarioNuevo, self).form_valid(form)
+        
 @login_required
 @permission_required('usuarios.delete_usuario', raise_exception=True)
 def baja_usuario(request, pk):

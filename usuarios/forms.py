@@ -8,6 +8,12 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 class FormUsuario(forms.ModelForm):
+    
+    fecha_nacimiento = forms.DateField(label='Fecha de nacimiento',
+    widget=DateInput(
+        format='%Y-%m-%d',
+        attrs={'class':'form-control','placeholder':'Fecha de nacimiento'}),
+    required=True)
 
     class Meta:
         model = Usuario
@@ -19,7 +25,6 @@ class FormUsuario(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre(s)'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Primer apellido'}),
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Segundo apellido'}),
-            'fecha_nacimiento': forms.DateField(widget=DateInput()),
             'calle': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Calle'}),
             'numero_interior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
             'numero_exterior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
@@ -45,6 +50,12 @@ class FormUsuario(forms.ModelForm):
 
 class FormUsuarioEditar(forms.ModelForm):
 
+    fecha_nacimiento = forms.DateField(label='Fecha de nacimiento',
+    widget=DateInput(
+        format='%Y-%m-%d',
+        attrs={'class':'form-control','placeholder':'Fecha de nacimiento'}),
+    required=True)
+
     class Meta:
         model = Usuario
         fields = ('first_name', 'last_name', 'segundo_apellido', 'fecha_nacimiento', 'calle', 
@@ -55,7 +66,6 @@ class FormUsuarioEditar(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre(s)'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Primer apellido'}),
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Segundo apellido'}),
-            'fecha_nacimiento': forms.DateField(widget=DateInput()),
             'calle': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Calle'}),
             'numero_interior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
             'numero_exterior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),

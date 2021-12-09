@@ -15,11 +15,13 @@
         <p><b>Datos personales</b></p>
         <hr>
         <div class="col-12">
+            <p><b>RFC Corto: </b>{{usuario.rfc_corto}}</p>
             <p><b>Nombre(s): </b>{{usuario.first_name}}</p>
             <p><b>Primer Apellido: </b>{{usuario.last_name}}</p>
             {% if usuario.segundo_apellido %}
                 <p><b>Segundo apellido: </b>{{usuario.segundo_apellido}}</p>
             {% endif %}
+            <p><b>Fecha de nacimiento: </b>{{usuario.fecha_nacimiento}}</p>
             <p><b>Correo: </b>{{usuario.email}}</p>
             <p><b>INE: </b>{{usuario.ine}}</p>
         </div>
@@ -32,7 +34,10 @@
         <hr>
         <div class="col-6">
             <p><b>Calle: </b>{{usuario.calle}}</p>
-            <p><b>Número: </b>{{usuario.numero}}</p>
+            {% if numero_interior %}
+                <p><b>Número interior: </b>{{usuario.numero_interior}}</p>
+            {% endif %}
+            <p><b>Número exterior: </b>{{usuario.numero_exterior}}</p>
             <p><b>Colonia: </b>{{usuario.colonia}}</p>
             <p><b>Código postal: </b>{{usuario.codigo_postal}}</p>
             <p><b>Estado: </b>{{usuario.estado}}</p>

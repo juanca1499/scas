@@ -44,6 +44,11 @@
                         {{form.segundo_apellido}}
                     </p>
                     <p>
+                        {{form.fecha_nacimiento.errors}}
+                        {{form.fecha_nacimiento.label_tag}}
+                        {{form.fecha_nacimiento}}
+                    </p>
+                    <p>
                         {{form.email.errors}}
                         {{form.email.label_tag}}
                         {{form.email}}
@@ -73,9 +78,14 @@
                         {{form.calle}}
                     </p>
                     <p>
-                        {{form.numero.errors}}
-                        {{form.numero.label_tag}}
-                        {{form.numero}}
+                        {{form.numero_interior.errors}}
+                        {{form.numero_interior.label_tag}}
+                        {{form.numero_interior}}
+                    </p>
+                    <p>
+                        {{form.numero_exterior.errors}}
+                        {{form.numero_exterior.label_tag}}
+                        {{form.numero_exterior}}
                     </p>
                     <p>
                         {{form.colonia.errors}}
