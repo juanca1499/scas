@@ -9,6 +9,7 @@ urlpatterns = [
     path('usuarios/', views.UsuarioLista.as_view(), name='lista'),
     path('usuarios/nuevo', views.UsuarioNuevo.as_view(), name='nuevo'),
     path('usuarios/baja/<int:pk>', views.baja_usuario, name='baja'),
+    path('usuarios/alta/<int:pk>', views.alta_usuario, name='alta'),
     path('usuarios/editar/<int:pk>', views.UsuarioEditar.as_view(), name='editar'),
     path('usuarios/detalle/<int:pk>',
          views.UsuarioDetalle.as_view(), name='detalle')

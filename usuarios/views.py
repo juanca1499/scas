@@ -92,6 +92,15 @@ def baja_usuario(request, pk):
         messages.success(request, '¡Cuenta dada de baja con éxito!')
     return redirect('usuarios:lista')
 
+@login_required
+@permission_required('usuarios.change_usuario', raise_exception=True)
+def alta_usuario(request, pk):
+    if request.method == "POST":
+        usuario = get_object_or_404(Usuario, id=pk)
+        usuario.dado_baja = False
+        usuario.save()
+        messages.success(request, '¡Cuenta dada de alta con éxito!')
+    return redirect('usuarios:lista')
 
 class UsuarioEditar(PermissionRequiredMixin, UpdateView):
     permission_required = 'usuarios.change_usuario'
