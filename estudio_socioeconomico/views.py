@@ -51,16 +51,11 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.solicitud = self.solicitud
         self.estudio_socioeconomico = form.save(commit=False)
-        
         rfc_corto_usuario = self.solicitud.usuario.rfc_corto 
         rfc_corto = rfc_corto_usuario[0:4]
-        
         folio_nuevo = rfc_corto + self.estudio_socioeconomico.folio
-        
         self.estudio_socioeconomico.folio = folio_nuevo
-        
         self.estudio_socioeconomico.save()
-        
         messages.success(
             self.request, 'Estudio socioeconómico guardado exitosamente.')
         return super().form_valid(form)

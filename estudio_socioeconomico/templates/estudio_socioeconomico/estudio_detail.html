@@ -52,7 +52,7 @@
                 <p><b>Localidad: </b>{{estudio.solicitud.localidad}}</p>
                 <br>
                 <p><b>Escolaridad: </b>{{estudio.escolaridad}}</p>
-                {% if estudio.cabeza_familia == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.cabeza_familia == True %} <!-- Se muestra "Sí" en caso de haber sido marcado. --> 
                     <p><b>Es cabeza de familia: </b>Si</p>  
                 {% else %}   
                     <p><b>Es cabeza de familia: </b>No</p>  
@@ -81,7 +81,7 @@
                 <p><b>Estado: </b>{{estudio.estado}}</p>
                 <p><b>Municipio: </b>{{estudio.municipio}}</p>
                 <p><b>Localidad: </b>{{estudio.localidad}}</p>
-                {% if estudio.entre_calles != None %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.entre_calles != None %} <!-- Solo muestra "entre las calles" en caso de que haya sido capturado--> 
                     <p><b>Entre calles: </b> {{estudio.entre_calles}}</p>
                 {% endif %}
             </div>
@@ -93,30 +93,30 @@
             <p><b>CARACTERISTICAS DE LA CASA</b></p>
             <hr>
             <div class="col-6">
-                {% if estudio.una_planta == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.una_planta == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                     <p><b>1 Planta</b></p>
                 {% endif %}
-                {% if estudio.dos_planta == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.dos_planta == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                     <p><b>2 Planta</b></p>
                 {% endif %}
-                {% if estudio.tres_planta == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.tres_planta == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                 <p><b>3 Planta o más</b></p>
                 {% endif %}
-                {% if estudio.sala_comedor == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.sala_comedor == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                 <p><b>Sala/Comedor</b></p>
                 {% endif %}
-                {% if estudio.cocina == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.cocina == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                 <p><b>Cocina</b></p>
                 {% endif %}
-                {% if estudio.patio == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.patio == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                 <p><b>Patio</b></p>
                 {% endif %}
-                {% if estudio.cochera == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.cochera == True %} <!-- Solo muestra en caso de que hayas sido marcado--> 
                 <p><b>Cochera</b></p>
                 {% endif %}
                 <p><b>No. recamaras: </b> {{estudio.numero_recamaras}}</p>
                 <p><b>No. Baños: </b>{{estudio.numero_banios}}</p>
-                {% if estudio.otros_caracteristicas_casa != None %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.otros_caracteristicas_casa != None %} <!-- Solo muestra "otro" en caso de que haya sido capturado--> 
                     <p><b>Otro: </b> {{estudio.otros_caracteristicas_casa}}</p>
                 {% endif %}
                 <p><b>El piso es: </b>{{estudio.piso_es}}</p>
@@ -125,54 +125,48 @@
 
                 <br>
                 <p><b>Cuenta con los siguientes servicios de equipamiento:</b></p>
-                {% if estudio.casa_energia == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_energia == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                     <p><b>Energía eléctrica</b></p>
                 {% endif %}
-                {% if estudio.casa_drenaje == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_drenaje == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                     <p><b>Drenaje</b></p>
                 {% endif %}
-                {% if estudio.casa_potable == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_potable == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Agua Potable</b></p>
                 {% endif %}
-                {% if estudio.casa_gas == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_gas == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Instalación gas</b></p>
                 {% endif %}
-                {% if estudio.casa_lavadora == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_lavadora == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Lavadora de ropa</b></p>
                 {% endif %}
-                {% if estudio.casa_refrigerador == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_refrigerador == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Refrigerador</b></p>
                 {% endif %}
-                {% if estudio.casa_tv == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_tv == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>T.V.</b></p>
                 {% endif %}
-                {% if estudio.casa_tel_fijo == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_tel_fijo == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Teléfono fijo</b></p>
                 {% endif %}
-                {% if estudio.casa_tel_celular == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_tel_celular == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Teléfono celular</b></p>
                 {% endif %}
-                {% if estudio.horno_microondas == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.horno_microondas == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Horno de microondas</b></p>
                 {% endif %}
-                {% if estudio.casa_radio == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_radio == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Radio/Stéreo</b></p>
                 {% endif %}
-                {% if estudio.casa_dvd == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_dvd == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>DVD</b></p>
                 {% endif %}
-                {% if estudio.casa_computadora == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_computadora == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Computadora</b></p>
                 {% endif %}
-                {% if estudio.casa_laptop == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.casa_laptop == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Laptop</b></p>
                 {% endif %}     
-                {% if estudio.enfermedad_otro != None %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
-                <p><b>Otro: </b> {{estudio.enfermedad_otro}}</p>
-                {% endif %}
-                {% if estudio.receta != None %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
-                <p>{{estudio.receta}}</p>
-                {% endif %}
             </div>
         </section>
     </div>
@@ -185,48 +179,54 @@
 
                 <br>
                 <p><b>Que enfemerdades existen en la familia:</b></p>
-                {% if estudio.enfermedad_cancer == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_cancer == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                     <p><b>Cáncer</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_quemaduras == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_quemaduras == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                     <p><b>Quemaduras</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_epilepsia == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_epilepsia == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Epilepsia</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_hipertension == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_hipertension == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Hipertensión</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_presion_baja == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_presion_baja == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Presión baja</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_discapacidad == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_discapacidad == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Discapacidad</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_cardiacos == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_cardiacos == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Cardíacos</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_estrabismo == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_estrabismo == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Estrabismo</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_renales == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_renales == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Renales</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_alergia == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_alergia == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Alergías</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_paladar_hendido == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_paladar_hendido == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Paladar Hendido</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_cardiopatias == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_cardiopatias == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Cardiopatías</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_diabetes == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_diabetes == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Diabetes</b></p>
                 {% endif %}
-                {% if estudio.enfermedad_alzhaimer == True %} <!-- Solo muestra el segundo apellido en caso de que haya sido capturado--> 
+                {% if estudio.enfermedad_alzhaimer == True %} <!-- Solo muestra en caso de que hayas sido marcado-->  
                 <p><b>Alzhaimer</b></p>
-                {% endif %}     
+                {% endif %}   
+                {% if estudio.enfermedad_otro != None %} <!-- Solo muestra Otra enfermedad en caso de que hayas sido registrada-->  
+                <p><b>Otro: </b> {{estudio.enfermedad_otro}}</p>
+                {% endif %}
+                {% if estudio.receta != None %} <!-- Solo se muestra en caso de que hayas sido registrado-->  
+                <p>{{estudio.receta}}</p>
+                {% endif %}  
             </div>
         </section>
     </div>
