@@ -4,19 +4,25 @@ from django.forms import widgets
 from .models import Usuario
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class FormUsuario(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('first_name', 'last_name', 'segundo_apellido', 'calle', 'numero', 'colonia', 'codigo_postal',
-                  'estado', 'municipio', 'localidad', 'email', 'telefono', 'ine', 'username', 'password',)
+        fields = ('first_name', 'last_name', 'segundo_apellido', 'fecha_nacimiento', 'calle', 
+                  'numero_interior', 'numero_exterior', 'colonia', 'codigo_postal', 'estado',
+                  'municipio', 'localidad', 'email', 'telefono', 'ine', 'username', 'password')
 
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre(s)'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Primer apellido'}),
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Segundo apellido'}),
+            'fecha_nacimiento': forms.DateField(widget=DateInput()),
             'calle': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Calle'}),
-            'numero': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número'}),
+            'numero_interior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
+            'numero_exterior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
             'colonia': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Colonia'}),
             'codigo_postal': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Código postal'}),
             'estado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Estado'}),
@@ -41,15 +47,18 @@ class FormUsuarioEditar(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('first_name', 'last_name', 'segundo_apellido', 'calle', 'numero', 'colonia',
-                  'codigo_postal', 'estado', 'municipio', 'localidad', 'email', 'telefono', 'ine',)
+        fields = ('first_name', 'last_name', 'segundo_apellido', 'fecha_nacimiento', 'calle', 
+                  'numero_interior', 'numero_exterior', 'colonia', 'codigo_postal', 'estado',
+                  'municipio', 'localidad', 'email', 'telefono', 'ine',)
 
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre(s)'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Primer apellido'}),
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Segundo apellido'}),
+            'fecha_nacimiento': forms.DateField(widget=DateInput()),
             'calle': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Calle'}),
-            'numero': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número'}),
+            'numero_interior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
+            'numero_exterior': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número interior'}),
             'colonia': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Colonia'}),
             'codigo_postal': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Código postal'}),
             'estado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Estado'}),

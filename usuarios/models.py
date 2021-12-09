@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator, MaxValueValidator, RegexValidator, MinLengthValidator, MinValueValidator, FileExtensionValidator
 
+import datetime
+
 
 class Estado(models.Model):
     nombre = models.CharField('Estado', max_length=35)
@@ -38,9 +40,12 @@ validador_archivo = FileExtensionValidator(
 class Usuario(User):
     segundo_apellido = models.CharField(
         'Segundo apellido', max_length=35, null=True, blank=True)
+    fecha_nacimiento = models.DateField('Fecha de nacimiento')
     calle = models.CharField('Calle', max_length=40)
-    numero = models.IntegerField('Número', validators=[MinValueValidator(
-        1, 'El número debe estar entre 1 y 9999.'), MaxValueValidator(9999, 'El número debe estar entre 1 y 9999.')])
+    numero_interior = models.IntegerField('Número interior', null=True, blank=True,
+    validators=[MinValueValidator(1, 'El número debe estar entre 1 y 9999.'), MaxValueValidator(9999, 'El número debe estar entre 1 y 9999.')])
+    numero_exterior = models.IntegerField('Número exterior', 
+    validators=[MinValueValidator(1, 'El número debe estar entre 1 y 9999.'), MaxValueValidator(9999, 'El número debe estar entre 1 y 9999.')])
     colonia = models.CharField('Colonia', max_length=35)
     codigo_postal = models.CharField('Código postal', max_length=5, validators=[
                                      MinLengthValidator(5, 'El código postal debe contener cinco dígitos.'), solo_numeros])
@@ -56,3 +61,4 @@ class Usuario(User):
                            max_length=100, validators=[validador_archivo])
     dado_baja = models.BooleanField('Dado de baja', default=False, validators=[MaxLengthValidator(1, 'El campo sólo puede contener un dígito'), MinValueValidator(
         0, 'Sólo se permiten los valores 0 y 1'), MaxValueValidator(1, 'Sólo se permiten los valores 0 y 1')])
+    rfc_corto = models.CharField('RFC Corto', max_length=10, validators=[MinLengthValidator(10, 'El RFC corto debe contener diez caracteres.')])
