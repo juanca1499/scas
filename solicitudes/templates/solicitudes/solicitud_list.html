@@ -96,7 +96,10 @@
                 <tbody>
                     {% for solicitud in solicitudes %}
                         <!-- Se muestran los datos de las solicitudes en la tabla--> 
-                        <tr>
+                        <tr {% if solicitud.estatus_id == 1 %} style="background-color: #df5d66d7;" 
+                        {% elif solicitud.estatus_id == 2 %} style="background-color: #47b4e6d8;" 
+                        {% elif solicitud.estatus_id == 3 %} style="background-color: #ead249d5;" 
+                        {% else %} style="background-color: #3fd61962;" {% endif %}>
                             <td>{{solicitud.fecha}}</td>
                             <td>{{solicitud.nombre}}</td>
                             <td>{{solicitud.primer_apellido}} 
