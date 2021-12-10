@@ -15,13 +15,12 @@ class EstudiosocioeconomicoForm(forms.ModelForm):
 
     class Meta:
         model = EstudioSocioeconomico
-        exclude = ['solicitud','folio']
+        exclude = ['solicitud','folio','edad']
 
         widgets = {
             'credencial': forms.FileInput(attrs={'class': 'form-control'}),
             'comprobante_domicilio': forms.FileInput(attrs={'class': 'form-control'}),
             'escolaridad': forms.Select(attrs={'class': 'form-control'}),
-            'edad': forms.NumberInput(attrs={'class': 'form-control'}),
             'calle': forms.TextInput(attrs={'class': 'form-control'}),
             'numero_interior': forms.NumberInput(attrs={'class': 'form-control'}),
             'numero_exterior': forms.NumberInput(attrs={'class': 'form-control'}),

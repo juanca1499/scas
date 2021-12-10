@@ -9,6 +9,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from solicitudes.models import Solicitud
 from usuarios.models import Usuario
+from datetime import datetime, timedelta, timezone
+from django.conf import settings
+import pytz
 
 from .models import EstudioSocioeconomico
 from .forms import EstudiosocioeconomicoForm
@@ -51,6 +54,10 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.solicitud = self.solicitud
         self.estudio_socioeconomico = form.save(commit=False)
+        self.estudio_socioeconomico.fecha_actual = datetime.now()
+        fecha_actual = self.estudio_socioeconomico.fecha_actual      
+        fecha_nacimiento = self.solicitud.fecha_nacimiento
+        self.estudio_socioeconomico.edad = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
         rfc_corto_usuario = self.solicitud.usuario.rfc_corto 
         rfc_corto = rfc_corto_usuario[0:4]
         folio_nuevo = rfc_corto + self.estudio_socioeconomico.folio
@@ -66,6 +73,8 @@ class NuevoEstudioSocioeconomico(LoginRequiredMixin, CreateView):
         return super(NuevoEstudioSocioeconomico, self).form_invalid(form)
 
 
+        
+        
 class DetalleEstudio(LoginRequiredMixin, DetailView):
     model = EstudioSocioeconomico
     context_object_name = "estudio"

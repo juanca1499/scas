@@ -20,33 +20,14 @@
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
-        <section>
-            <div class="container">
-                <p style="display: inline;"><b>Información General</b></p>
-                <hr>
-                <p style="display: inline;">
-                    <p>
-                        {{form.folio.errors}}
-                        {{form.folio.label_tag}}
-                        {{form.folio}}
-                    </p>
-                    <p>
-                        {{form.fecha_actual.errors}}
-                        {{form.fecha_actual.label_tag}}
-                        {{form.fecha_actual}}
-                    </p>
-                    <p>
-                        <input type="hidden" name="solicitud" value="{{ solicitud }}" class="form-control" id="id_solicitud">
-                    </p>
-            </div>
-        </section>
-
         <section>
             <div class="container">
                 <p style="display: inline;"><b>Comprobantes oficiales</b></p>
                 <hr>
                 <p style="display: inline;">
+                    <p>
+                        <input type="hidden" name="solicitud" value="{{ solicitud }}" class="form-control" id="id_solicitud">
+                    </p>
                     <p>
                         {{form.credencial.errors}}
                         {{form.credencial.label_tag}}
@@ -89,11 +70,6 @@
                         {{form.fecha_nacimiento.errors}}
                         {{form.fecha_nacimiento.label_tag}}
                         {{form.fecha_nacimiento}}
-                    </p>
-                    <p>
-                        {{form.edad.errors}}
-                        {{form.edad.label_tag}}
-                        {{form.edad}}
                     </p>
                     <p>
                         {{form.telefono.errors}}
