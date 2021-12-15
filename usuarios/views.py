@@ -74,11 +74,11 @@ class UsuarioNuevo(PermissionRequiredMixin, CreateView):
         materno=segundo_apellido, fecha=fecha_formateada).data
         form.instance.rfc_corto = rfc_corto
                 
-        if form.cleaned_data['tipo_usuario'] == 1:
+        if form.cleaned_data['tipo_usuario'] == '1':
             # Es administrador
             form.instance.is_superuser = 1
             
-        elif form.cleaned_data['tipo_usuario'] == 2:
+        elif form.cleaned_data['tipo_usuario'] == '2':
             # Es encuestador
             form.instance.is_superuser = 0
             form.instance.groups.add(name='Encuestador')
